@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float crouchSpeed = 100;
     public float jumpForce = 1000;
     public bool inAir = false;
+    public GameObject playerImage;
 
     private void Start()
     {
@@ -18,6 +19,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (Input.GetAxis("Horizontal") <= 0)
+        {
+            playerImage.transform.localScale = new Vector3(1,1,1);
+        }
+        else if (Input.GetAxis("Horizontal") > 0)
+        {
+            playerImage.transform.localScale = new Vector3(-1, 1, 1);
+        }
+
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * Time.fixedDeltaTime * runSpeed, rigidbody.velocity.y);
