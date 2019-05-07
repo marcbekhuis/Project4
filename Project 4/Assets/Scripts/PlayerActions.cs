@@ -26,9 +26,9 @@ public class PlayerActions : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            tilemap.SetTile(new Vector3Int((int)Input.mousePosition.x, (int)Input.mousePosition.y, 0), null);
-            Debug.Log(tilemap.HasTile(new Vector3Int((int)Input.mousePosition.x, (int)Input.mousePosition.y, 0)));
-            Debug.Log(Input.mousePosition);
+            tilemap.SetTile(new Vector3Int((int)Camera.main.ScreenToWorldPoint(Input.mousePosition).x, (int)Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0), null);
+            Debug.Log(tilemap.HasTile(new Vector3Int((int)Camera.main.ScreenToWorldPoint(Input.mousePosition).x, (int)Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0)));
+            Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
     }
 }
