@@ -404,7 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41ef2d86fbc5c14fbacb619e3a4c466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: 2
+  nextScene: 1
 --- !u!1 &1026934183
 GameObject:
   m_ObjectHideFlags: 0
