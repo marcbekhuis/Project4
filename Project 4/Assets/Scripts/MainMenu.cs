@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     private int nextScene = 1;
+    private int open = 0;
+    public GameObject optionsMenu;
 
     private void Start()
     {
@@ -24,6 +26,15 @@ public class MainMenu : MonoBehaviour
 
     public void OptionsMenu()
     {
-        SceneManager.LoadScene(1);
+        if (open == 0)
+        {
+            open++;
+            optionsMenu.gameObject.SetActive(true);
+        }
+        else if (open == 1)
+        {
+            open--;
+            optionsMenu.gameObject.SetActive(false);
+        }
     }
 }
