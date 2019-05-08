@@ -5,16 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private int nextScene;
+    private int nextScene = 1;
+
+    private void Start()
+    {
+        Screen.SetResolution(128, 128, false);
+    }
 
     public void StartGamer()
     {
         SceneManager.LoadScene(nextScene);
-    }
-
-    public void OptionsMenu()
-    {
-        SceneManager.LoadScene(1);
     }
 
     public void QuitGame()
@@ -22,5 +22,8 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-
+    public void OptionsMenu()
+    {
+        SceneManager.LoadScene(1);
+    }
 }
