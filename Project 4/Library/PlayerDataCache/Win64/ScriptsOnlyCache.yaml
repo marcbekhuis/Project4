@@ -49,29 +49,29 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 618}
+      Script: {instanceID: 602}
     - Class: 114
-      Script: {instanceID: 9336}
+      Script: {instanceID: 9320}
     - Class: 114
-      Script: {instanceID: 9338}
+      Script: {instanceID: 9322}
     - Class: 114
-      Script: {instanceID: 9344}
+      Script: {instanceID: 9328}
     - Class: 114
-      Script: {instanceID: 9350}
+      Script: {instanceID: 9334}
     - Class: 114
-      Script: {instanceID: 9358}
+      Script: {instanceID: 9342}
     - Class: 114
-      Script: {instanceID: 9394}
+      Script: {instanceID: 9378}
     - Class: 114
-      Script: {instanceID: 9396}
+      Script: {instanceID: 9380}
     - Class: 114
-      Script: {instanceID: 9636}
+      Script: {instanceID: 9418}
     - Class: 114
-      Script: {instanceID: 10242}
+      Script: {instanceID: 9588}
     - Class: 114
-      Script: {instanceID: 10628}
+      Script: {instanceID: 9624}
     - Class: 114
-      Script: {instanceID: 14090}
+      Script: {instanceID: 10230}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -114,21 +114,21 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9336}
+      Script: {instanceID: 9320}
     - Class: 114
-      Script: {instanceID: 9338}
+      Script: {instanceID: 9322}
     - Class: 114
-      Script: {instanceID: 9344}
+      Script: {instanceID: 9328}
     - Class: 114
-      Script: {instanceID: 9350}
+      Script: {instanceID: 9334}
     - Class: 114
-      Script: {instanceID: 9358}
+      Script: {instanceID: 9342}
     - Class: 114
-      Script: {instanceID: 9394}
+      Script: {instanceID: 9378}
     - Class: 114
-      Script: {instanceID: 9396}
+      Script: {instanceID: 9380}
     - Class: 114
-      Script: {instanceID: 9966}
+      Script: {instanceID: 9954}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -380,6 +380,12 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
+      Hash: dfe94997c0dc8f29f1a5f3a711882fa6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: NaturePediaScript
+  - hash:
+      serializedVersion: 2
       Hash: cf9f5cf2c3145a37ac07f00e50e460f9
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -576,6 +582,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 83e769eee07fc231384c812eedbb8224
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SkyBoxMovement
   - hash:
       serializedVersion: 2
       Hash: f08a111e17bb701f9c9ec57bb78d9920
@@ -804,20 +816,8 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: dfe94997c0dc8f29f1a5f3a711882fa6
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: NaturePediaScript
-  - hash:
-      serializedVersion: 2
-      Hash: 83e769eee07fc231384c812eedbb8224
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SkyBoxMovement
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/Level1.unity
-  playerPath: D:/Unity/Builds/Project 4.exe
+  playerPath: D:/Unity/Builds/Project4/Project 4.exe
