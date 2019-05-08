@@ -11,10 +11,12 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 1000;
     public bool inAir = false;
     public GameObject playerImage;
+    PlayerActions playerActions;
 
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        playerActions = GetComponent<PlayerActions>();
     }
 
     private void FixedUpdate()
@@ -28,25 +30,32 @@ public class PlayerMovement : MonoBehaviour
             playerImage.transform.localScale = new Vector3(-1, 1, 1);
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if (playerActions.allowAction)
         {
-            rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * Time.fixedDeltaTime * runSpeed, rigidbody.velocity.y);
-        }
-        else if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
-        {
-            rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * Time.fixedDeltaTime * crouchSpeed, rigidbody.velocity.y);
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            {
+                rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * Time.fixedDeltaTime * runSpeed, rigidbody.velocity.y);
+            }
+            else if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+            {
+                rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * Time.fixedDeltaTime * crouchSpeed, rigidbody.velocity.y);
+            }
+            else
+            {
+                rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * Time.fixedDeltaTime * walkSpeed, rigidbody.velocity.y);
+            }
+            if (!inAir)
+            {
+                if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+                {
+                    rigidbody.AddForce(new Vector2(0, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
+                    inAir = true;
+                }
+            }
         }
         else
         {
-            rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * Time.fixedDeltaTime * walkSpeed, rigidbody.velocity.y);
-        }
-        if (!inAir)
-        {
-            if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-            {
-                rigidbody.AddForce(new Vector2(0, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
-                inAir = true;
-            }
+            rigidbody.velocity = new Vector2(0,0);
         }
     }
 
