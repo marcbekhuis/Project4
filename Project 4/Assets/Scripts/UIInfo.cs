@@ -106,14 +106,4 @@ public class UIInfo : MonoBehaviour
             //playerActions.allowAction = false;
         }
     }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-
-    public void LoadMainMenu(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
 }

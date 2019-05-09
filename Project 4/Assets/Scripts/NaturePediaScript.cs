@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class NaturePediaScript : MonoBehaviour
 {
-    private int pages;
+    private int pages = 0;
     public Text title;
     public Text discription;
 
@@ -18,24 +18,22 @@ public class NaturePediaScript : MonoBehaviour
 
     public void PreviousPage()
     {
-        if (pages > 0)
-        {
-            pages--;
-        }
+        //goes to the previous page
+        pages--;
     }
 
     public void NextPage()
     {
-        if (pages <= 10)
-        {
-            pages++;
-        }
+        //goes to the next page
+        pages++;
+        print(pages);
     }
 
     private void Update()
     {
         if (pages > 0)
         {
+            //disables the book cover and enables the title, discription and pages
             bookCover.gameObject.SetActive(false);
             previousPageButton.gameObject.SetActive(true);
             title.gameObject.SetActive(true);
@@ -43,6 +41,7 @@ public class NaturePediaScript : MonoBehaviour
         }
         else
         {
+            //turns on the book cover 
             bookCover.gameObject.SetActive(true);
             leftPage.gameObject.SetActive(false);
             rightPage.gameObject.SetActive(false);
@@ -51,19 +50,42 @@ public class NaturePediaScript : MonoBehaviour
             previousPageButton.gameObject.SetActive(false);
         }
 
-        if (pages == 1)
+        //shows certain items on certain pages.
+        if (pages == 0)
+        {
+
+        }
+        else if (pages == 1)
         {
             leftPage.gameObject.SetActive(true);
             rightPage.gameObject.SetActive(false);
             title.text = "The NaturePedia";
-            discription.text = "This is the NaturePedia, here you will find information about blocks you collect";
+            discription.text = "This is the NaturePedia, here you will find information about blocks you collect.";
         }
         else if (pages == 2)
         {
             leftPage.gameObject.SetActive(false);
             rightPage.gameObject.SetActive(true);
             title.text = "Grass";
-            discription.text = "This is grass, one of the most common blocks. Plants and trees can grow on it";
+            discription.text = "This is grass, one of the most common blocks. Plants and trees can grow on it.";
+        }
+        else if (pages == 3)
+        {
+            leftPage.gameObject.SetActive(true);
+            rightPage.gameObject.SetActive(false);
+            title.text = "Dirt";
+            discription.text = "This is dirt, it's the block below grass. It does not do much.";
+        }
+        else if (pages == 4)
+        {
+            leftPage.gameObject.SetActive(false);
+            rightPage.gameObject.SetActive(true);
+            title.text = "Stone";
+            discription.text = "This is stone, one of the first building blocks you get.";
+        }
+        else
+        {
+            pages--;
         }
     }
 }

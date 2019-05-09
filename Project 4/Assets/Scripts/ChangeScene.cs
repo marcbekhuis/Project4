@@ -7,8 +7,9 @@ public class ChangeScene : MonoBehaviour
 {
     public int preferredScene;
 
-    public void SheneChanger()
+    public void SceneChanger()
     {
+        //changes the scene to the prefereed scene
         SceneManager.LoadScene(preferredScene);
     }
 }
