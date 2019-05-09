@@ -45,7 +45,8 @@ public class PlayerActions : MonoBehaviour
                 inventory.SetActive(true);
                 allowAction = false;
             }
-        }else if (Input.GetKeyDown(KeyCode.Escape))
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (pauseMenu.activeSelf)
             {
@@ -92,6 +93,25 @@ public class PlayerActions : MonoBehaviour
                     default:
                         tilemap.SetTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0), null);
                         break;
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1) && allowAction)
+        {
+            if (playerInvetory.selectedItem.name != "")
+            {
+                if (playerInvetory.selectedItem.amount != 0)
+                {
+                    Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    if (!tilemap.HasTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0)))
+                    {
+                        if (tilemap.HasTile(new Vector3Int((int)mousePosition.x - 1, (int)mousePosition.y, 0)) || tilemap.HasTile(new Vector3Int((int)mousePosition.x + 1, (int)mousePosition.y, 0)) || tilemap.HasTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y - 1, 0)) || tilemap.HasTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y + 1, 0)))
+                        {
+                            playerInvetory.Removeitem(playerInvetory.selectedItem.name, 1);
+                            tilemap.SetTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0), playerInvetory.selectedItem.tiles[Random.Range(0, playerInvetory.selectedItem.tiles.Length)]);
+                        }
+                    }
                 }
             }
         }
