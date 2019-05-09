@@ -64771,13 +64771,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8361873688735774960, guid: 498e40968e65bb741955be7cd11114af,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8361873688735774960, guid: 498e40968e65bb741955be7cd11114af,
-        type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 2.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 498e40968e65bb741955be7cd11114af, type: 3}
@@ -64847,37 +64842,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2692213145430640254, guid: db66875a02e12044d8f5dd252cc485c9,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2692213145430640254, guid: db66875a02e12044d8f5dd252cc485c9,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2692213146979200975, guid: db66875a02e12044d8f5dd252cc485c9,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 09630809a71742d4b874c0d0f201d338,
-        type: 3}
-    - target: {fileID: 2692213146979200975, guid: db66875a02e12044d8f5dd252cc485c9,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2692213146979200975, guid: db66875a02e12044d8f5dd252cc485c9,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2692213146979200975, guid: db66875a02e12044d8f5dd252cc485c9,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db66875a02e12044d8f5dd252cc485c9, type: 3}
