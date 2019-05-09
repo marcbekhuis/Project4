@@ -1122,6 +1122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 880512011}
   - component: {fileID: 880512012}
+  - component: {fileID: 880512013}
   m_Layer: 0
   m_Name: Player Image
   m_TagString: Untagged
@@ -1191,6 +1192,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &880512013
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880512010}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8e3d37c3ae6fe1040af3d62c9211d56f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &894037841 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1916565007967035018, guid: 98666c6a86c6bd148a2e46e861f77153,
@@ -1503,6 +1523,7 @@ MonoBehaviour:
   jumpForce: 350
   inAir: 0
   playerImage: {fileID: 880512010}
+  animator: {fileID: 880512013}
 --- !u!50 &1218868355
 Rigidbody2D:
   serializedVersion: 4
@@ -1540,10 +1561,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.85}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 2}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -1582,10 +1603,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.025}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 2}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
