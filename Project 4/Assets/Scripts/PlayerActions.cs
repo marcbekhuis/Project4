@@ -7,6 +7,7 @@ public class PlayerActions : MonoBehaviour
 {
     public GameObject infoBook;
     public GameObject inventory;
+    public GameObject pauseMenu;
     public Tilemap tilemap;
     PlayerInvetory playerInvetory;
     public bool allowAction = true;
@@ -42,6 +43,18 @@ public class PlayerActions : MonoBehaviour
             else
             {
                 inventory.SetActive(true);
+                allowAction = false;
+            }
+        }else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (pauseMenu.activeSelf)
+            {
+                pauseMenu.SetActive(false);
+                allowAction = true;
+            }
+            else
+            {
+                pauseMenu.SetActive(true);
                 allowAction = false;
             }
         }
