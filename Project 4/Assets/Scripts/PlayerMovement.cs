@@ -21,22 +21,48 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (playerActions.allowAction)
-        {
-            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             {
-                rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * Time.fixedDeltaTime * runSpeed, rigidbody.velocity.y);
-                
-            }
-            
-            else if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
-            {
-                rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * Time.fixedDeltaTime * crouchSpeed, rigidbody.velocity.y);
-               
-            }
-            else
-            {
-                rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * Time.fixedDeltaTime * walkSpeed, rigidbody.velocity.y);
+                if (Input.GetKey(KeyCode.A))
+                {
+                    if (!Input.GetKey(KeyCode.D))
+                    {
+                        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+                        {
+                            rigidbody.velocity = new Vector2(-1 * Time.fixedDeltaTime * crouchSpeed, rigidbody.velocity.y);
+                        }
+                        else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                        {
+                            rigidbody.velocity = new Vector2(-1 * Time.fixedDeltaTime * runSpeed, rigidbody.velocity.y);
+                        }
+                        else
+                        {
+                            rigidbody.velocity = new Vector2(-1 * Time.deltaTime * walkSpeed, rigidbody.velocity.y);
+                        }
+                        playerImage.transform.localScale = new Vector3(1, 1, 1);
+                    }
+                }
+                else if (Input.GetKey(KeyCode.D))
+                {
+                    if (!Input.GetKey(KeyCode.A))
+                    {
+                        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+                        {
+                            rigidbody.velocity = new Vector2(1 * Time.fixedDeltaTime * crouchSpeed, rigidbody.velocity.y);
+                        }
+                        else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                        {
+                            rigidbody.velocity = new Vector2(1 * Time.fixedDeltaTime * runSpeed, rigidbody.velocity.y);
+                        }
+                        else
+                        {
+                            rigidbody.velocity = new Vector2(1 * Time.deltaTime * walkSpeed, rigidbody.velocity.y);
+                        }
+                        playerImage.transform.localScale = new Vector3(-1, 1, 1);
+                    }
+                }else
+                {
+                    rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
+                }
             }
             if (!inAir)
             {
@@ -47,11 +73,6 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
             inAir = !Physics2D.OverlapBox(this.transform.position, new Vector2(0.45f,0.01f),0, 1 << LayerMask.NameToLayer("Solid"));
-        }
-        else
-        {
-            rigidbody.velocity = new Vector2(0,0);
-        }
     }
 
     private void Update()
@@ -71,17 +92,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetBool("jumpingAnim", false);
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            playerImage.transform.localScale = new Vector3(1, 1, 1);
-
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            playerImage.transform.localScale = new Vector3(-1, 1, 1);
-
         }
     }
 }
