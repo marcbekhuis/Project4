@@ -28,6 +28,29 @@ public class UIInfo : MonoBehaviour
     public Text foodText;
     public PlayerInvetory playerInvetory;
     public PlayerActions playerActions;
+    public float timeSec;
+    public float timeMin;
+    public Text timeText;
+
+    void start()
+    {
+        timeText.text = "Time survived: " + timeMin.ToString("F0") + ":" + timeSec.ToString("F0");
+
+    }
+
+    void Update()
+    {
+        if (!playerActions.gamePaused)
+        {
+            timeSec += Time.deltaTime;
+            if (timeSec >= 60)
+            {
+                timeSec -= 60;
+                timeMin++;
+            }
+        }
+        timeText.text = "Time survived: " + timeMin.ToString("F0") + ":" + timeSec.ToString("F0");
+    }
 
     private void FixedUpdate()
     {

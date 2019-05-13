@@ -11,6 +11,7 @@ public class PlayerActions : MonoBehaviour
     public Tilemap tilemap;
     PlayerInvetory playerInvetory;
     public bool allowAction = true;
+    public bool gamePaused = false;
 
     private void Start()
     {
@@ -46,17 +47,19 @@ public class PlayerActions : MonoBehaviour
                 allowAction = false;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Escape))
+        else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
         {
             if (pauseMenu.activeSelf)
             {
                 pauseMenu.SetActive(false);
                 allowAction = true;
+                gamePaused = false;
             }
             else
             {
                 pauseMenu.SetActive(true);
                 allowAction = false;
+                gamePaused = true;
             }
         }
         if (Input.GetKeyDown(KeyCode.Mouse0) && allowAction)
