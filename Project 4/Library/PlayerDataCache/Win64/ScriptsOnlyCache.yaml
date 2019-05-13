@@ -55,41 +55,41 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 602}
+      Script: {instanceID: 606}
     - Class: 114
-      Script: {instanceID: 9320}
+      Script: {instanceID: 9324}
     - Class: 114
-      Script: {instanceID: 9322}
+      Script: {instanceID: 9326}
     - Class: 114
-      Script: {instanceID: 9328}
+      Script: {instanceID: 9332}
     - Class: 114
-      Script: {instanceID: 9334}
+      Script: {instanceID: 9338}
     - Class: 114
-      Script: {instanceID: 9336}
+      Script: {instanceID: 9340}
     - Class: 114
-      Script: {instanceID: 9342}
+      Script: {instanceID: 9346}
     - Class: 114
-      Script: {instanceID: 9378}
+      Script: {instanceID: 9382}
     - Class: 114
-      Script: {instanceID: 9380}
+      Script: {instanceID: 9384}
     - Class: 114
-      Script: {instanceID: 9390}
+      Script: {instanceID: 9394}
     - Class: 114
-      Script: {instanceID: 9418}
+      Script: {instanceID: 9422}
     - Class: 114
-      Script: {instanceID: 9588}
+      Script: {instanceID: 9592}
     - Class: 114
-      Script: {instanceID: 9624}
+      Script: {instanceID: 9628}
     - Class: 114
-      Script: {instanceID: 9956}
+      Script: {instanceID: 9960}
     - Class: 114
-      Script: {instanceID: 9976}
+      Script: {instanceID: 9980}
     - Class: 114
-      Script: {instanceID: 10210}
+      Script: {instanceID: 10214}
     - Class: 114
-      Script: {instanceID: 10234}
+      Script: {instanceID: 10238}
     - Class: 114
-      Script: {instanceID: 10324}
+      Script: {instanceID: 10328}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -134,23 +134,23 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9320}
+      Script: {instanceID: 9324}
     - Class: 114
-      Script: {instanceID: 9322}
+      Script: {instanceID: 9326}
     - Class: 114
-      Script: {instanceID: 9328}
+      Script: {instanceID: 9332}
     - Class: 114
-      Script: {instanceID: 9334}
+      Script: {instanceID: 9338}
     - Class: 114
-      Script: {instanceID: 9342}
+      Script: {instanceID: 9346}
     - Class: 114
-      Script: {instanceID: 9378}
+      Script: {instanceID: 9382}
     - Class: 114
-      Script: {instanceID: 9380}
+      Script: {instanceID: 9384}
     - Class: 114
-      Script: {instanceID: 9908}
+      Script: {instanceID: 9912}
     - Class: 114
-      Script: {instanceID: 9956}
+      Script: {instanceID: 9960}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -856,6 +856,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 21b9d01d9f12c6d1da794442c47e271b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LevelGenerator
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
