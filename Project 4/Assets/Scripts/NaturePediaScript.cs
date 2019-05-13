@@ -83,6 +83,13 @@ public class NaturePediaScript : MonoBehaviour
             title.text = "Stone";
             discription.text = "This is stone, one of the first building blocks you get.";
         }
+        else if (pages == 5)
+        {
+            leftPage.gameObject.SetActive(true);
+            rightPage.gameObject.SetActive(false);
+            title.text = "Kapok Tree";
+            discription.text = "The kapok tree is a tropicl tree, these trees can grow up to 70 m tall.";
+        }
         else
         {
             pages--;
