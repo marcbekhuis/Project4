@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerInvetory : MonoBehaviour
 {
     [System.Serializable]
     public struct item {
-        public item(string Name, int Amount, Sprite Image, bool Interactable, bool Food, int Foodvalue)
+        public item(string Name, int Amount, Sprite Image, bool Interactable, bool Food, int Foodvalue, bool BuildBlock, TileBase[] Tiles)
         {
             name = Name;
             amount = Amount;
@@ -14,6 +15,8 @@ public class PlayerInvetory : MonoBehaviour
             interactable = Interactable;
             foodvalue = Foodvalue;
             food = Food;
+            buildBlock = BuildBlock;
+            tiles = Tiles;
         }
 
         public string name;
@@ -22,6 +25,8 @@ public class PlayerInvetory : MonoBehaviour
         public Sprite image;
         public bool food;
         public int foodvalue;
+        public bool buildBlock;
+        public TileBase[] tiles;
     }
 
     public UIInfo uIInfo;
@@ -29,6 +34,8 @@ public class PlayerInvetory : MonoBehaviour
     public GameObject inventory;
     public GameObject inventoryGrid;
     public GameObject itemIcon;
+    public item selectedItem;
+
     [Space]
     public item[] items;
     //PlayerStats playerStats;
@@ -64,6 +71,10 @@ public class PlayerInvetory : MonoBehaviour
                 {
                     uIInfo.UpdateItemIcon(ItemIcons[name], items[x].amount.ToString());
                 }
+                if (selectedItem.name == items[x].name)
+                {
+                    selectedItem = items[x];
+                }
                 break;
             }
         }
@@ -85,6 +96,10 @@ public class PlayerInvetory : MonoBehaviour
                 else
                 {
                     uIInfo.UpdateItemIcon(ItemIcons[name], items[x].amount.ToString());
+                }
+                if (selectedItem.name == items[x].name)
+                {
+                    selectedItem = items[x];
                 }
                 break;
             }
@@ -114,6 +129,10 @@ public class PlayerInvetory : MonoBehaviour
                     {
                         //playerStats.UpdateFood(items[x].foodvalue);
                         Removeitem(items[x].name,1);
+                    }
+                    else if (items[x].buildBlock)
+                    {
+                        selectedItem = items[x];
                     }
                     else
                     {

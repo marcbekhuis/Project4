@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public bool inAir = false;
     public GameObject playerImage;
     PlayerActions playerActions;
-
+    public Animator animator;
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -24,21 +24,31 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetAxis("Horizontal") <= 0)
         {
             playerImage.transform.localScale = new Vector3(1,1,1);
+            
         }
         else if (Input.GetAxis("Horizontal") > 0)
         {
             playerImage.transform.localScale = new Vector3(-1, 1, 1);
+            
         }
+
+       
 
         if (playerActions.allowAction)
         {
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             {
                 rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * Time.fixedDeltaTime * runSpeed, rigidbody.velocity.y);
+                
             }
+            
+            
+          
+            
             else if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
             {
                 rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * Time.fixedDeltaTime * crouchSpeed, rigidbody.velocity.y);
+               
             }
             else
             {
@@ -50,7 +60,12 @@ public class PlayerMovement : MonoBehaviour
                 {
                     rigidbody.AddForce(new Vector2(0, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
                     inAir = true;
+
+                   
+
                 }
+
+                
             }
         }
         else
@@ -59,7 +74,29 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Update()
+    {
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            animator.SetBool("walkingAnim", true);
+        }
+        else
+        {
+            animator.SetBool("walkingAnim", false);
+        }
+        if (inAir == true)
+        {
+            animator.SetBool("jumpingAnim", true);
+        }
+        else
+        {
+            animator.SetBool("jumpingAnim", false);
+        }
+
+
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
         inAir = false;
     }
