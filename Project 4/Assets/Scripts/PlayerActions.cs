@@ -12,10 +12,17 @@ public class PlayerActions : MonoBehaviour
     PlayerInvetory playerInvetory;
     public bool allowAction = true;
     public bool gamePaused = false;
+    GameObject overlappingTree;
+    public GameObject cursor;
 
     private void Start()
     {
         playerInvetory = GetComponent<PlayerInvetory>();
+    }
+
+    private void FixedUpdate()
+    {
+        cursor.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
     }
 
     // Update is called once per frame
@@ -64,38 +71,47 @@ public class PlayerActions : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Mouse0) && allowAction)
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if (tilemap.HasTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0)))
+            if (overlappingTree != null)
             {
-                switch (tilemap.GetTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0)).name)
+                playerInvetory.Additem("Wood", Random.Range(2,4));
+                playerInvetory.Additem("Stick", Random.Range(4, 8));
+                playerInvetory.Additem("Leave", Random.Range(2, 4));
+                Destroy(overlappingTree);
+            }
+            if (Vector3.Distance(this.transform.position, cursor.transform.position) <= 2)
+            {
+                if (tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0)))
                 {
-                    case "Grass01":
-                        playerInvetory.Additem("Grass", 1);
-                        tilemap.SetTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0), null);
-                        break;
-                    case "Grass02":
-                        playerInvetory.Additem("Grass", 1);
-                        tilemap.SetTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0), null);
-                        break;
-                    case "Dirt01":
-                        playerInvetory.Additem("Dirt", 1);
-                        tilemap.SetTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0), null);
-                        break;
-                    case "Dirt02":
-                        playerInvetory.Additem("Dirt", 1);
-                        tilemap.SetTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0), null);
-                        break;
-                    case "Stone01":
-                        playerInvetory.Additem("Stone", 1);
-                        tilemap.SetTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0), null);
-                        break;
-                    case "DirtStone01":
-                        playerInvetory.Additem("Stone", 1);
-                        tilemap.SetTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0), null);
-                        break;
-                    default:
-                        tilemap.SetTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0), null);
-                        break;
+                    switch (tilemap.GetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0)).name)
+                    {
+                        case "Grass01":
+                            playerInvetory.Additem("Grass", 1);
+                            tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                            break;
+                        case "Grass02":
+                            playerInvetory.Additem("Grass", 1);
+                            tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                            break;
+                        case "Dirt01":
+                            playerInvetory.Additem("Dirt", 1);
+                            tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                            break;
+                        case "Dirt02":
+                            playerInvetory.Additem("Dirt", 1);
+                            tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                            break;
+                        case "Stone01":
+                            playerInvetory.Additem("Stone", 1);
+                            tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                            break;
+                        case "DirtStone01":
+                            playerInvetory.Additem("Stone", 1);
+                            tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                            break;
+                        default:
+                            tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                            break;
+                    }
                 }
             }
         }
@@ -114,12 +130,26 @@ public class PlayerActions : MonoBehaviour
                             if (tilemap.HasTile(new Vector3Int((int)mousePosition.x - 1, (int)mousePosition.y, 0)) || tilemap.HasTile(new Vector3Int((int)mousePosition.x + 1, (int)mousePosition.y, 0)) || tilemap.HasTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y - 1, 0)) || tilemap.HasTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y + 1, 0)))
                             {
                                 playerInvetory.Removeitem(playerInvetory.selectedItem.name, 1);
-                                tilemap.SetTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0), playerInvetory.selectedItem.tiles[Random.Range(0, playerInvetory.selectedItem.tiles.Length)]);
+                                tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), playerInvetory.selectedItem.tiles[Random.Range(0, playerInvetory.selectedItem.tiles.Length)]);
                             }
                         }
                     }
                 }
             }
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Tree"))
+        {
+            overlappingTree = collision.gameObject;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Tree"))
+        {
+            overlappingTree = null;
         }
     }
 }
