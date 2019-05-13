@@ -21,19 +21,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetAxis("Horizontal") <= 0)
-        {
-            playerImage.transform.localScale = new Vector3(1,1,1);
-            
-        }
-        else if (Input.GetAxis("Horizontal") > 0)
-        {
-            playerImage.transform.localScale = new Vector3(-1, 1, 1);
-            
-        }
-
-       
-
         if (playerActions.allowAction)
         {
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
@@ -41,9 +28,6 @@ public class PlayerMovement : MonoBehaviour
                 rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * Time.fixedDeltaTime * runSpeed, rigidbody.velocity.y);
                 
             }
-            
-            
-          
             
             else if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
             {
@@ -60,13 +44,9 @@ public class PlayerMovement : MonoBehaviour
                 {
                     rigidbody.AddForce(new Vector2(0, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
                     inAir = true;
-
-                   
-
                 }
-
-                
             }
+            inAir = !Physics2D.OverlapBox(this.transform.position, new Vector2(0.45f,0.01f),0, 1 << LayerMask.NameToLayer("Solid"));
         }
         else
         {
@@ -76,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetAxis("Horizontal") != 0)
+        if (rigidbody.velocity.x != 0)
         {
             animator.SetBool("walkingAnim", true);
         }
@@ -93,11 +73,15 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("jumpingAnim", false);
         }
 
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            playerImage.transform.localScale = new Vector3(1, 1, 1);
 
-    }
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            playerImage.transform.localScale = new Vector3(-1, 1, 1);
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        inAir = false;
+        }
     }
 }
