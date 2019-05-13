@@ -28,6 +28,20 @@ public class UIInfo : MonoBehaviour
     public Text foodText;
     public PlayerInvetory playerInvetory;
     public PlayerActions playerActions;
+    public float timeStart;
+    public Text timeText;
+
+    void start()
+    {
+        timeText.text = timeStart.ToString("F2");
+         
+    }
+
+    void Update()
+    {
+        timeStart += Time.deltaTime;
+        timeText.text = timeStart.ToString("F2");
+    }
 
     private void FixedUpdate()
     {
