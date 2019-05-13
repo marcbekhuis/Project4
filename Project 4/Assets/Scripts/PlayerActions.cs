@@ -15,14 +15,18 @@ public class PlayerActions : MonoBehaviour
     GameObject overlappingTree;
     public GameObject cursor;
 
+    public int offsetX;
+    public int offsetY;
+
     private void Start()
     {
+        Cursor.visible = false;
         playerInvetory = GetComponent<PlayerInvetory>();
     }
 
     private void FixedUpdate()
     {
-        cursor.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
+        cursor.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x + offsetX, Camera.main.ScreenToWorldPoint(Input.mousePosition).y + offsetY, 0);
     }
 
     // Update is called once per frame
