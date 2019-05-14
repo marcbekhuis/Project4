@@ -178,6 +178,7 @@ public class PlayerInvetory : MonoBehaviour
 
     public void InteractionCrafting(GameObject itemIcon)
     {
+        Debug.Log("Craft");
         string itemname = "none";
         bool found = false;
         foreach (var item in craftingItemIcons)

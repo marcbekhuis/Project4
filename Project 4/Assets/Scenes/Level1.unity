@@ -1439,7 +1439,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.3333335
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3566,8 +3566,74 @@ MonoBehaviour:
     foodvalue: 0
     buildBlock: 0
     tiles: []
-  items: []
-  craftingItems: []
+  items:
+  - name: Stone
+    amount: 0
+    interactable: 1
+    image: {fileID: -4571426771012277631, guid: c4f7242829db17649a0e7385f3d59aee,
+      type: 3}
+    food: 0
+    foodvalue: 0
+    buildBlock: 1
+    tiles:
+    - {fileID: 11400000, guid: 4686d103730186f46be6452defc324f1, type: 2}
+  - name: Wood
+    amount: 0
+    interactable: 0
+    image: {fileID: 21300000, guid: 9a1f7fc4058146843a71f78a6a811a95, type: 3}
+    food: 0
+    foodvalue: 0
+    buildBlock: 0
+    tiles: []
+  - name: Dirt
+    amount: 0
+    interactable: 1
+    image: {fileID: 5631985527695486294, guid: c4f7242829db17649a0e7385f3d59aee, type: 3}
+    food: 0
+    foodvalue: 0
+    buildBlock: 1
+    tiles:
+    - {fileID: 11400000, guid: 631f5ce38a6adf14686a0dc157990a43, type: 2}
+    - {fileID: 11400000, guid: 14816c1118b59c940832f64ed8de96b2, type: 2}
+  - name: Grass
+    amount: 0
+    interactable: 1
+    image: {fileID: -1830387456247548485, guid: c4f7242829db17649a0e7385f3d59aee,
+      type: 3}
+    food: 0
+    foodvalue: 0
+    buildBlock: 1
+    tiles:
+    - {fileID: 11400000, guid: 3067ff8b11bc0a54180a8597e5d8e1a8, type: 2}
+    - {fileID: 11400000, guid: 544d8046b56057c4f8fc59e4c2804205, type: 2}
+  - name: Stick
+    amount: 0
+    interactable: 0
+    image: {fileID: 2813835729802249334, guid: c4f7242829db17649a0e7385f3d59aee, type: 3}
+    food: 0
+    foodvalue: 0
+    buildBlock: 0
+    tiles: []
+  - name: Leave
+    amount: 0
+    interactable: 0
+    image: {fileID: 1925443839241491323, guid: c4f7242829db17649a0e7385f3d59aee, type: 3}
+    food: 0
+    foodvalue: 0
+    buildBlock: 0
+    tiles: []
+  craftingItems:
+  - name: Stick
+    needItemName:
+    - Wood
+    needItemAmount: 02000000
+    image: {fileID: 2813835729802249334, guid: c4f7242829db17649a0e7385f3d59aee, type: 3}
+  - name: Axe
+    needItemName:
+    - Stone
+    - Stick
+    needItemAmount: 0300000002000000
+    image: {fileID: 9071598375631006475, guid: cf2d7a0b6930e7f4ba356f1f93d206aa, type: 3}
 --- !u!1 &1257039705
 GameObject:
   m_ObjectHideFlags: 0
