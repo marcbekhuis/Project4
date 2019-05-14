@@ -32,18 +32,20 @@ public class PlayerInvetory : MonoBehaviour
     [System.Serializable]
     public struct craftingItem
     {
-        public craftingItem(string Name, string[] NeedItemName, int[] NeedItemAmount, Sprite Image)
+        public craftingItem(string Name, string[] NeedItemName, int[] NeedItemAmount, Sprite Image, int AmountGetting)
         {
             name = Name;
             needItemName = NeedItemName;
             needItemAmount = NeedItemAmount;
             image = Image;
+            amountGetting = AmountGetting;
         }
 
         public string name;
         public string[] needItemName;
         public int[] needItemAmount;
         public Sprite image;
+        public int amountGetting;
     }
 
     public UIInfo uIInfo;
@@ -55,6 +57,8 @@ public class PlayerInvetory : MonoBehaviour
     public GameObject itemIcon;
     public GameObject craftingItemIcon;
     public item selectedItem;
+    public GameObject selectedCraftingIcon;
+    craftingItem selectedCraftingItem;
 
     [Space]
     public item[] items;
@@ -172,13 +176,12 @@ public class PlayerInvetory : MonoBehaviour
         {
             GameObject justAdded = Instantiate(craftingItemIcon, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0), craftingInventoryGrid.transform);
             craftingItemIcons.Add(craftingItems[x].name, justAdded);
-            uIInfo.CreateItemIcon(craftingItemIcons[craftingItems[x].name], craftingItems[x].image, true);
+            uIInfo.CreateCraftingItemIcon(craftingItemIcons[craftingItems[x].name], craftingItems[x].image, true);
         }
     }
 
     public void InteractionCrafting(GameObject itemIcon)
     {
-        Debug.Log("Craft");
         string itemname = "none";
         bool found = false;
         foreach (var item in craftingItemIcons)
@@ -187,6 +190,7 @@ public class PlayerInvetory : MonoBehaviour
             {
                 itemname = item.Key;
                 found = true;
+                selectedCraftingIcon = itemIcon;
                 break;
             }
         }
@@ -196,15 +200,51 @@ public class PlayerInvetory : MonoBehaviour
             {
                 if (craftingItems[x].name == itemname)
                 {
+                    selectedCraftingItem = craftingItems[x];
                     string text = "";
                     for (int t = 0; t < craftingItems[x].needItemName.Length; t++)
                     {
-                        text += craftingItems[x].needItemName[t] + ": " + craftingItems[x].needItemAmount[t];
+                        int iGotAmount = 0;
+                        for (int y = 0; y < items.Length; y++)
+                        {
+                            if (items[y].name == craftingItems[x].needItemName[t])
+                            {
+                                iGotAmount = items[y].amount;
+                                break;
+                            }
+                        }
+                                text += craftingItems[x].needItemName[t] + ": " + iGotAmount + "/" + craftingItems[x].needItemAmount[t] + "\n";
                     }
-                    uIInfo.ShowCraftingInfo(craftingItems[x].image, text);
+                    uIInfo.ShowCraftingInfo(craftingItems[x].image, text, craftingItems[x].name);
+                    break;
                 }
             }
             found = false;
+        }
+    }
+
+    public void Craft()
+    {
+        int enough = 0;
+        for (int x = 0; x < selectedCraftingItem.needItemName.Length; x++)
+        {
+            for (int y = 0; y < items.Length; y++)
+            {
+                if (items[y].name == selectedCraftingItem.needItemName[x])
+                {
+                    enough++;
+                    break;
+                }
+            }
+        }
+        if (enough == selectedCraftingItem.needItemName.Length)
+        {
+            Additem(selectedCraftingItem.name, selectedCraftingItem.amountGetting);
+            for (int x = 0; x < selectedCraftingItem.needItemName.Length; x++)
+            {
+                Removeitem(selectedCraftingItem.needItemName[x], selectedCraftingItem.needItemAmount[x]);
+            }
+            InteractionCrafting(selectedCraftingIcon);
         }
     }
 }
