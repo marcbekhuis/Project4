@@ -6,14 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealthScript : MonoBehaviour
 {
-    public Image[] hearts = new Image[3];
+    public GameObject heartPrefab;
+    public List<Image> hearts = new List<Image>();
     public Sprite fullHeart;
     public Sprite halfHeart;
     public Sprite emptyHeart;
+    public GameObject healtchContainer;
 
     private int playerHealth;
+    private int fullPlayerHealth;
     private int healthLost;
     private int actualPlayerHealth;
+    private int fullActualPlayerHealth;
     private int heartMode;
 
     // Start is called before the first frame update
@@ -21,7 +25,9 @@ public class PlayerHealthScript : MonoBehaviour
     {
         heartMode = 3;
         playerHealth = 3;
+        fullPlayerHealth = 3;
         actualPlayerHealth = 6;
+        fullActualPlayerHealth = 6;
     }
 
     // Update is called once per frame
@@ -47,6 +53,35 @@ public class PlayerHealthScript : MonoBehaviour
                 heartMode = 2;
             }
             Changeheart();
+        }
+
+        if (collision.gameObject.CompareTag("HealthUp"))
+        {
+            if (playerHealth <= 19)
+            {
+                GameObject justAdded = Instantiate(heartPrefab, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0), healtchContainer.transform);
+                hearts.Add(justAdded.GetComponent<Image>());
+                fullActualPlayerHealth += 3;
+                fullPlayerHealth += 1;
+                actualPlayerHealth = fullActualPlayerHealth;
+                playerHealth = fullPlayerHealth;
+                heartMode = 3;
+                healthLost = 0;
+                for (int i = 0; i < hearts.Count; i++)
+                {
+                    hearts[i].sprite = fullHeart;
+                }
+            }else
+            {
+                actualPlayerHealth = fullActualPlayerHealth;
+                playerHealth = fullPlayerHealth;
+                heartMode = 3;
+                healthLost = 0;
+                for (int i = 0; i < hearts.Count; i++)
+                {
+                    hearts[i].sprite = fullHeart;
+                }
+            }
         }
     }
 
