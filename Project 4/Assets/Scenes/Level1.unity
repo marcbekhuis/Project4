@@ -67087,6 +67087,7 @@ GameObject:
   - component: {fileID: 1990768971}
   - component: {fileID: 1990768970}
   - component: {fileID: 1990768969}
+  - component: {fileID: 1990768972}
   m_Layer: 0
   m_Name: New Sprite (1)
   m_TagString: HealthUp
@@ -67182,6 +67183,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1990768972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990768968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 292b9e2e0235c3d4180eaab2f279f9e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSpeed: 1
+  hoverOffset: 2
 --- !u!4 &2008703623 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2692213145430640254, guid: db66875a02e12044d8f5dd252cc485c9,
