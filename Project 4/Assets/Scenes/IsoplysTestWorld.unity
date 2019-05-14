@@ -1221,6 +1221,7 @@ MonoBehaviour:
   - {fileID: 1489252345404602764, guid: 8b26c76470e6ced47aeea33fec79285c, type: 3}
   - {fileID: 2699823106364195080, guid: 694ce8f741ec30f448fdd2b3a28243db, type: 3}
   - {fileID: 4544992474166734290, guid: 469fbf7efa35f7d4abf4a0f0cba1595c, type: 3}
+  - {fileID: 4753356392569119931, guid: b3e3158ec00a08745b18f5d865d576c2, type: 3}
   startWall: {fileID: 430084838}
 --- !u!212 &434410670
 SpriteRenderer:
@@ -2592,6 +2593,9 @@ MonoBehaviour:
   tilemap: {fileID: 1760935552}
   allowAction: 1
   gamePaused: 0
+  cursor: {fileID: 0}
+  offsetX: 0
+  offsetY: 0
 --- !u!114 &1218868360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2607,8 +2611,10 @@ MonoBehaviour:
   uIInfo: {fileID: 1738997293}
   inventory: {fileID: 1850501870}
   inventoryGrid: {fileID: 1257039705}
+  craftingInventoryGrid: {fileID: 0}
   itemIcon: {fileID: 6371693797056318496, guid: b2245457b8f58f44bbd9a31a094bbdac,
     type: 3}
+  craftingItemIcon: {fileID: 0}
   selectedItem:
     name: 
     amount: 0
@@ -2648,6 +2654,7 @@ MonoBehaviour:
     buildBlock: 1
     tiles:
     - {fileID: 11400000, guid: 4686d103730186f46be6452defc324f1, type: 2}
+  craftingItems: []
 --- !u!1 &1257039705
 GameObject:
   m_ObjectHideFlags: 0
@@ -3120,6 +3127,8 @@ MonoBehaviour:
   timeSec: 0
   timeMin: 0
   timeText: {fileID: 2143888173}
+  craftingImage: {fileID: 0}
+  craftingText: {fileID: 0}
 --- !u!4 &1738997294
 Transform:
   m_ObjectHideFlags: 0

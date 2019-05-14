@@ -196,11 +196,11 @@ public class PlayerInvetory : MonoBehaviour
                 if (craftingItems[x].name == itemname)
                 {
                     string text;
-                    for (int t = 0; t )
-                    {
+                    //for (int t = 0; t )
+                   // {
 
-                    }
-                    uIInfo.ShowCraftingInfo();
+                   // }
+                   // uIInfo.ShowCraftingInfo();
                 }
             }
             found = false;
