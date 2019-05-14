@@ -4,38 +4,25 @@ using UnityEngine;
 
 public class ItemHoverScript : MonoBehaviour
 {
-    public float hoverSpeed;
-    public float hoverOffset;
-    Vector3 location;
+    [SerializeField] private float amountTime;
+    [SerializeField] private float speed;
+    private float timer;
 
-    int timesUp;
-    int timesDown;
-    bool direction = false;
-
-    private void Start()
+    private void Update()
     {
-        location = this.transform.position;
-    }
-    
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if (this.transform.position.y >= location.y - 10)
+        if (timer < amountTime)
         {
-            direction = true;
+            transform.Translate(0, speed, 0);
+            timer++;
         }
-        else if (this.transform.position.y >= location.y + 10)
+        else if (timer < amountTime * 2)
         {
-            direction = false;
+            transform.Translate(0, -speed, 0);
+            timer++;
         }
-
-        if (direction)
+        else if (timer >= amountTime * 2)
         {
-            this.transform.Translate(new Vector3(0,hoverSpeed * Time.fixedDeltaTime, 0));
-        }
-        else
-        {
-            this.transform.Translate(new Vector3(0, hoverSpeed * Time.fixedDeltaTime * -1, 0));
+            timer = 0;
         }
     }
 }

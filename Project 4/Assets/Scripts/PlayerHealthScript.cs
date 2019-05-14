@@ -82,6 +82,7 @@ public class PlayerHealthScript : MonoBehaviour
                     hearts[i].sprite = fullHeart;
                 }
             }
+            collision.gameObject.SetActive(false);
         }
     }
 
