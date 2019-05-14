@@ -195,12 +195,12 @@ public class PlayerInvetory : MonoBehaviour
             {
                 if (craftingItems[x].name == itemname)
                 {
-                    string text;
-                    for (int t = 0; t )
+                    string text = "";
+                    for (int t = 0; t < craftingItems[x].needItemName.Length; t++)
                     {
-
+                        text += craftingItems[x].needItemName[t] + ": " + craftingItems[x].needItemAmount[t];
                     }
-                    uIInfo.ShowCraftingInfo();
+                    uIInfo.ShowCraftingInfo(craftingItems[x].image, text);
                 }
             }
             found = false;
