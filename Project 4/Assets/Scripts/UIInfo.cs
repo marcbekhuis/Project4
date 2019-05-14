@@ -139,9 +139,9 @@ public class UIInfo : MonoBehaviour
         justButton.onClick.AddListener(() => playerInvetory.InteractionCrafting(itemIcon));
     }
 
-    public void ShowCraftingInfo(Image image, string neededItems)
+    public void ShowCraftingInfo(Sprite image, string neededItems)
     {
-        craftingImage = image;
+        craftingImage.sprite = image;
         craftingText.text = neededItems;
     }
 }
