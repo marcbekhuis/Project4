@@ -54,6 +54,10 @@ public class PlayerActions : MonoBehaviour
             else
             {
                 inventory.SetActive(true);
+                if (playerInvetory.selectedCraftingIcon != null)
+                {
+                    playerInvetory.InteractionCrafting(playerInvetory.selectedCraftingIcon);
+                }
                 allowAction = false;
             }
         }

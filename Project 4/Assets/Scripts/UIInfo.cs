@@ -33,6 +33,7 @@ public class UIInfo : MonoBehaviour
     public Text timeText;
     public Image craftingImage;
     public Text craftingText;
+    public Text craftingTitle;
 
     void start()
     {
@@ -139,9 +140,10 @@ public class UIInfo : MonoBehaviour
         justButton.onClick.AddListener(() => playerInvetory.InteractionCrafting(itemIcon));
     }
 
-    public void ShowCraftingInfo(Sprite image, string neededItems)
+    public void ShowCraftingInfo(Sprite image, string neededItems, string name)
     {
         craftingImage.sprite = image;
         craftingText.text = neededItems;
+        craftingTitle.text = name;
     }
 }
