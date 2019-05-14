@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5353762015901635056}
   - component: {fileID: -42543728821192102}
   - component: {fileID: 6820168740437546973}
+  - component: {fileID: -1311764296011585027}
   m_Layer: 0
   m_Name: Clouds01
   m_TagString: Untagged
@@ -143,3 +144,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.3333335, y: 1.3333334}
   m_EdgeRadius: 0
+--- !u!114 &-1311764296011585027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5255528072352176901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16274b7606c5bc94facf6f29b50cad88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 5353762015901635056}
