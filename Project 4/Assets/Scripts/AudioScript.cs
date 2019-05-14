@@ -18,9 +18,9 @@ public class AudioScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (audioSource.volume != endVolume)
+        if (audioSource.volume < endVolume)
         {
-            audioSource.volume += 1 * Time.deltaTime;
+            audioSource.volume += 0.02f * Time.deltaTime;
         }
     }
 }
