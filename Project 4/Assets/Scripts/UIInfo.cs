@@ -31,11 +31,12 @@ public class UIInfo : MonoBehaviour
     public float timeSec;
     public float timeMin;
     public Text timeText;
+    public Image craftingImage;
+    public Text craftingText;
 
     void start()
     {
         timeText.text = "Time survived: " + timeMin.ToString("F0") + ":" + timeSec.ToString("F0");
-
     }
 
     void Update()
@@ -108,7 +109,7 @@ public class UIInfo : MonoBehaviour
         itemIcon.transform.Find("Image").GetComponentInChildren<Image>().sprite = sprite;
         Button justButton = itemIcon.GetComponent<Button>();
         justButton.interactable = interactable;
-        justButton.onClick.AddListener(() => playerInvetory.Interaction(itemIcon));
+        justButton.onClick.AddListener(() => playerInvetory.InteractionInventory(itemIcon));
     }
 
     public void UpdateItemIcon(GameObject itemIcon, string value)
@@ -128,5 +129,19 @@ public class UIInfo : MonoBehaviour
             menu.SetActive(true);
             //playerActions.allowAction = false;
         }
+    }
+
+    public void CreateCraftingItemIcon(GameObject itemIcon, Sprite sprite, bool interactable)
+    {
+        itemIcon.transform.Find("Image").GetComponentInChildren<Image>().sprite = sprite;
+        Button justButton = itemIcon.GetComponent<Button>();
+        justButton.interactable = interactable;
+        justButton.onClick.AddListener(() => playerInvetory.InteractionCrafting(itemIcon));
+    }
+
+    public void ShowCraftingInfo(Image image, string neededItems)
+    {
+        craftingImage = image;
+        craftingText.text = neededItems;
     }
 }

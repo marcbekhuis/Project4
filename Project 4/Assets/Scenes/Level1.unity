@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 2.1, y: -0.5}
+  m_AnchoredPosition: {x: 2.0999756, y: -0.5}
   m_SizeDelta: {x: 50, y: 10}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &19014174
@@ -2125,7 +2125,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6426b0acd804233438bef244ea085adb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9a1f7fc4058146843a71f78a6a811a95, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3238,7 +3238,10 @@ MonoBehaviour:
   uIInfo: {fileID: 1738997293}
   inventory: {fileID: 1850501870}
   inventoryGrid: {fileID: 1257039705}
+  craftingInventoryGrid: {fileID: 471752817}
   itemIcon: {fileID: 6371693797056318496, guid: b2245457b8f58f44bbd9a31a094bbdac,
+    type: 3}
+  craftingItemIcon: {fileID: 7954222433682872844, guid: aa00b7f8542227744b35f6d2000fd341,
     type: 3}
   selectedItem:
     name: 
@@ -3282,7 +3285,7 @@ MonoBehaviour:
   - name: Wood
     amount: 0
     interactable: 0
-    image: {fileID: 21300000, guid: 6426b0acd804233438bef244ea085adb, type: 3}
+    image: {fileID: 21300000, guid: 9a1f7fc4058146843a71f78a6a811a95, type: 3}
     food: 0
     foodvalue: 0
     buildBlock: 0
@@ -3306,6 +3309,22 @@ MonoBehaviour:
     buildBlock: 0
     tiles:
     - {fileID: 11400000, guid: 4686d103730186f46be6452defc324f1, type: 2}
+  - name: Axe
+    amount: 0
+    interactable: 1
+    image: {fileID: 21300000, guid: 62b92a70b7c8f0a4fb9f5e9801045f78, type: 3}
+    food: 0
+    foodvalue: 0
+    buildBlock: 0
+    tiles:
+    - {fileID: 11400000, guid: 4686d103730186f46be6452defc324f1, type: 2}
+  craftingItems:
+  - name: Axe
+    needItemName:
+    - Stone
+    - Stick
+    needItemAmount: 0300000002000000
+    image: {fileID: 0}
 --- !u!1 &1257039705
 GameObject:
   m_ObjectHideFlags: 0
@@ -3938,6 +3957,8 @@ MonoBehaviour:
   timeSec: 0
   timeMin: 0
   timeText: {fileID: 2143888173}
+  craftingImage: {fileID: 0}
+  craftingText: {fileID: 0}
 --- !u!4 &1738997294
 Transform:
   m_ObjectHideFlags: 0
@@ -66669,15 +66690,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8361873688735774960, guid: 498e40968e65bb741955be7cd11114af,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.75
-      objectReference: {fileID: 0}
     - target: {fileID: 1820938639419790473, guid: 498e40968e65bb741955be7cd11114af,
         type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361873688735774960, guid: 498e40968e65bb741955be7cd11114af,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 498e40968e65bb741955be7cd11114af, type: 3}

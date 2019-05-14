@@ -29,23 +29,46 @@ public class PlayerInvetory : MonoBehaviour
         public TileBase[] tiles;
     }
 
+    [System.Serializable]
+    public struct craftingItem
+    {
+        public craftingItem(string Name, string[] NeedItemName, int[] NeedItemAmount, Sprite Image)
+        {
+            name = Name;
+            needItemName = NeedItemName;
+            needItemAmount = NeedItemAmount;
+            image = Image;
+        }
+
+        public string name;
+        public string[] needItemName;
+        public int[] needItemAmount;
+        public Sprite image;
+    }
+
     public UIInfo uIInfo;
-    Dictionary<string, GameObject> ItemIcons = new Dictionary<string, GameObject>();
+    Dictionary<string, GameObject> itemIcons = new Dictionary<string, GameObject>();
+    Dictionary<string, GameObject> craftingItemIcons = new Dictionary<string, GameObject>();
     public GameObject inventory;
     public GameObject inventoryGrid;
+    public GameObject craftingInventoryGrid;
     public GameObject itemIcon;
+    public GameObject craftingItemIcon;
     public item selectedItem;
 
     [Space]
     public item[] items;
-    //PlayerStats playerStats;
+
+    [Space]
+    public craftingItem[] craftingItems;
+
     PlayerActions playerActions;
 
 
     private void Start()
     {
-        //playerStats = GetComponent<PlayerStats>();
         playerActions = GetComponent<PlayerActions>();
+        LoadCraftingItems();
     }
 
     private void Update()
@@ -60,16 +83,16 @@ public class PlayerInvetory : MonoBehaviour
             {
                 items[x].amount += amount;
                 uIInfo.AddTextItem("Added " + amount + " " + name + " to your inventory.");
-                if (!ItemIcons.ContainsKey(name))
+                if (!itemIcons.ContainsKey(name))
                 {
                     GameObject justAdded = Instantiate(itemIcon, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0), inventoryGrid.transform);
-                    ItemIcons.Add(name, justAdded);
-                    uIInfo.CreateItemIcon(ItemIcons[name], items[x].image, items[x].interactable);
-                    uIInfo.UpdateItemIcon(ItemIcons[name], items[x].amount.ToString());
+                    itemIcons.Add(name, justAdded);
+                    uIInfo.CreateItemIcon(itemIcons[name], items[x].image, items[x].interactable);
+                    uIInfo.UpdateItemIcon(itemIcons[name], items[x].amount.ToString());
                 }
                 else
                 {
-                    uIInfo.UpdateItemIcon(ItemIcons[name], items[x].amount.ToString());
+                    uIInfo.UpdateItemIcon(itemIcons[name], items[x].amount.ToString());
                 }
                 if (selectedItem.name == items[x].name)
                 {
@@ -90,12 +113,12 @@ public class PlayerInvetory : MonoBehaviour
                 uIInfo.AddTextItem("Removed " + amount + " " + name + " from your inventory.");
                 if (items[x].amount <= 0)
                 {
-                    Destroy(ItemIcons[name]);
-                    ItemIcons.Remove(name);
+                    Destroy(itemIcons[name]);
+                    itemIcons.Remove(name);
                 }
                 else
                 {
-                    uIInfo.UpdateItemIcon(ItemIcons[name], items[x].amount.ToString());
+                    uIInfo.UpdateItemIcon(itemIcons[name], items[x].amount.ToString());
                 }
                 if (selectedItem.name == items[x].name)
                 {
@@ -106,11 +129,11 @@ public class PlayerInvetory : MonoBehaviour
         }
     }
 
-    public void Interaction(GameObject itemIcon)
+    public void InteractionInventory(GameObject itemIcon)
     {
         string itemname = "none";
         bool found = false;
-        foreach (var item in ItemIcons)
+        foreach (var item in itemIcons)
         {
             if(item.Value == itemIcon)
             {
@@ -127,7 +150,6 @@ public class PlayerInvetory : MonoBehaviour
                 {
                     if (items[x].food)
                     {
-                        //playerStats.UpdateFood(items[x].foodvalue);
                         Removeitem(items[x].name,1);
                     }
                     else if (items[x].buildBlock)
@@ -138,6 +160,47 @@ public class PlayerInvetory : MonoBehaviour
                     {
                         break;
                     }
+                }
+            }
+            found = false;
+        }
+    }
+
+    public void LoadCraftingItems()
+    {
+        for (int x = 0; x < craftingItems.Length; x++)
+        {
+            GameObject justAdded = Instantiate(craftingItemIcon, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0), craftingInventoryGrid.transform);
+            craftingItemIcons.Add(craftingItems[x].name, justAdded);
+            uIInfo.CreateItemIcon(craftingItemIcons[craftingItems[x].name], craftingItems[x].image, true);
+        }
+    }
+
+    public void InteractionCrafting(GameObject itemIcon)
+    {
+        string itemname = "none";
+        bool found = false;
+        foreach (var item in craftingItemIcons)
+        {
+            if (item.Value == itemIcon)
+            {
+                itemname = item.Key;
+                found = true;
+                break;
+            }
+        }
+        if (found)
+        {
+            for (int x = 0; x < items.Length; x++)
+            {
+                if (craftingItems[x].name == itemname)
+                {
+                    string text;
+                    for (int t = 0; t )
+                    {
+
+                    }
+                    uIInfo.ShowCraftingInfo();
                 }
             }
             found = false;
