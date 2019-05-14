@@ -20,7 +20,6 @@ public class PlayerActions : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = false;
         playerInvetory = GetComponent<PlayerInvetory>();
     }
 
@@ -82,7 +81,7 @@ public class PlayerActions : MonoBehaviour
                 playerInvetory.Additem("Leave", Random.Range(2, 4));
                 Destroy(overlappingTree);
             }
-            if (Vector3.Distance(this.transform.position, cursor.transform.position) <= 2)
+            if (Vector3.Distance(this.transform.position, cursor.transform.position) <= 200)
             {
                 if (tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0)))
                 {
@@ -126,12 +125,11 @@ public class PlayerActions : MonoBehaviour
             {
                 if (playerInvetory.selectedItem.amount != 0)
                 {
-                    Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    if (!tilemap.HasTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0)))
+                    if (!tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0)))
                     {
-                        if (new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0) != new Vector3Int((int)this.transform.position.x, (int)this.transform.position.y, 0) && new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0) != new Vector3Int((int)this.transform.position.x, (int)this.transform.position.y - 1, 0))
+                        if (new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0) != new Vector3Int((int)this.transform.position.x, (int)this.transform.position.y, 0) && new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0) != new Vector3Int((int)this.transform.position.x, (int)this.transform.position.y - 1, 0))
                         {
-                            if (tilemap.HasTile(new Vector3Int((int)mousePosition.x - 1, (int)mousePosition.y, 0)) || tilemap.HasTile(new Vector3Int((int)mousePosition.x + 1, (int)mousePosition.y, 0)) || tilemap.HasTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y - 1, 0)) || tilemap.HasTile(new Vector3Int((int)mousePosition.x, (int)mousePosition.y + 1, 0)))
+                            if (tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x - 1, (int)cursor.transform.position.y, 0)) || tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x + 1, (int)cursor.transform.position.y, 0)) || tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y - 1, 0)) || tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y + 1, 0)))
                             {
                                 playerInvetory.Removeitem(playerInvetory.selectedItem.name, 1);
                                 tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), playerInvetory.selectedItem.tiles[Random.Range(0, playerInvetory.selectedItem.tiles.Length)]);
