@@ -90,6 +90,34 @@ public class NaturePediaScript : MonoBehaviour
             title.text = "Kapok Tree";
             discription.text = "The kapok tree is a tropicl tree, these trees can grow up to 70 m tall.";
         }
+        else if (pages == 6)
+        {
+            leftPage.gameObject.SetActive(false);
+            rightPage.gameObject.SetActive(true);
+            title.text = "Cotoneaster";
+            discription.text = "This flower attract bees and butterflies and the fruits are eaten by birds.";
+        }
+        else if (pages == 7)
+        {
+            leftPage.gameObject.SetActive(true);
+            rightPage.gameObject.SetActive(false);
+            title.text = "Rafflesia";
+            discription.text = "The Rafflesia has no stems, leaves or roots. The only part of the plant that can be seen outside the host vine is the five-petalled flower.";
+        }
+        else if (pages == 8)
+        {
+            leftPage.gameObject.SetActive(false);
+            rightPage.gameObject.SetActive(true);
+            title.text = "Asian Elephant";
+            discription.text = "The Asian elephant is the largest living land animal in Asia.";
+        }
+        else if (pages == 9)
+        {
+            leftPage.gameObject.SetActive(true);
+            rightPage.gameObject.SetActive(false);
+            title.text = "Albatross";
+            discription.text = "Albatrosses are highly efficient in the air, using dynamic soaring and slope soaring to cover great distances with little exertion.";
+        }
         else
         {
             pages--;
