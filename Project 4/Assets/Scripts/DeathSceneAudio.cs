@@ -8,6 +8,8 @@ public class DeathSceneAudio : MonoBehaviour
     public AudioClip deathNoise;
     public AudioClip deathMusic;
 
+    public GameObject deathUI;
+
     float endVolume;
     bool playedOnce;
     float timer;
@@ -15,6 +17,7 @@ public class DeathSceneAudio : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        deathUI.SetActive(false);
         audioSource.clip = deathNoise;
         audioSource.volume = 0.25f;
     }
@@ -48,6 +51,7 @@ public class DeathSceneAudio : MonoBehaviour
                 else
                 {
                     audioSource.Stop();
+                    deathUI.SetActive(true);
                 }
             }
         }

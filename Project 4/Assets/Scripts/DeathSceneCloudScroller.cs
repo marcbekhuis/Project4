@@ -19,7 +19,7 @@ public class DeathSceneCloudScroller : MonoBehaviour
         rb2D.velocity = new Vector3(-speed, 0, 0);
         if (transform.position.x <= -13)
         {
-            transform.position = new Vector3(13, 0, 0);
+            transform.position = new Vector3(13, Random.Range(0.8f, 1.2f), 0);
         }
     }
 }
