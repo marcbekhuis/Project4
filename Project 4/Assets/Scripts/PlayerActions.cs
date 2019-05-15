@@ -125,6 +125,8 @@ public class PlayerActions : MonoBehaviour
                                 playerInvetory.Additem("Stone", 1);
                                 tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
                                 break;
+                            case "Bedrock01":
+                                break;
                             default:
                                 tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
                                 break;
