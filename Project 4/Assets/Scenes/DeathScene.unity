@@ -1415,7 +1415,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1511,7 +1511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1799161590}
   deathNoise: {fileID: 8300000, guid: 039036eaea7142b46acfca1ef55451fb, type: 3}
-  deathMusic: {fileID: 0}
+  deathMusic: {fileID: 8300000, guid: 612d25af07a61e047b5099ffcc41caeb, type: 3}
 --- !u!1 &1854712771
 GameObject:
   m_ObjectHideFlags: 0

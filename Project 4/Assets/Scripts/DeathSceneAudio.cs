@@ -31,14 +31,25 @@ public class DeathSceneAudio : MonoBehaviour
         }
 
         timer += 1 * Time.deltaTime;
-        if (timer >= 6)
+        if (timer >= 5.6f)
         {
-            playedOnce = true;
+            if (playedOnce == false)
+            {
+                if (timer >= 8)
+                {
+                    playedOnce = true;
 
-            endVolume = audioSource.volume;
-            audioSource.volume = 0;
+                    endVolume = audioSource.volume;
+                    audioSource.volume = 0;
 
-            audioSource.clip = deathMusic;
+                    audioSource.clip = deathMusic;
+                    audioSource.Play();
+                }
+                else
+                {
+                    audioSource.Stop();
+                }
+            }
         }
     }
 }
