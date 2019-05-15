@@ -17,6 +17,7 @@ public class PlayerActions : MonoBehaviour
 
     public int offsetX;
     public int offsetY;
+    float actiondelay;
 
     private void Start()
     {
@@ -76,67 +77,82 @@ public class PlayerActions : MonoBehaviour
                 gamePaused = true;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0) && allowAction)
+        if (actiondelay < Time.time)
         {
-            if (overlappingTree != null)
+            if (Input.GetKeyDown(KeyCode.Mouse0) && allowAction)
             {
-                playerInvetory.Additem("Wood", Random.Range(2,4));
-                playerInvetory.Additem("Stick", Random.Range(4, 8));
-                playerInvetory.Additem("Leave", Random.Range(2, 4));
-                Destroy(overlappingTree);
-            }
-            if (Vector3.Distance(this.transform.position, cursor.transform.position) <= 200)
-            {
-                if (tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0)))
+                if (overlappingTree != null)
                 {
-                    switch (tilemap.GetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0)).name)
+                    TreeInfo treeInfo = overlappingTree.GetComponent<TreeInfo>();
+                    for (int x = 0; x < treeInfo.itemsAmount.Length; x++)
                     {
-                        case "Grass01":
-                            playerInvetory.Additem("Grass", 1);
-                            tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
-                            break;
-                        case "Grass02":
-                            playerInvetory.Additem("Grass", 1);
-                            tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
-                            break;
-                        case "Dirt01":
-                            playerInvetory.Additem("Dirt", 1);
-                            tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
-                            break;
-                        case "Dirt02":
-                            playerInvetory.Additem("Dirt", 1);
-                            tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
-                            break;
-                        case "Stone01":
-                            playerInvetory.Additem("Stone", 1);
-                            tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
-                            break;
-                        case "DirtStone01":
-                            playerInvetory.Additem("Stone", 1);
-                            tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
-                            break;
-                        default:
-                            tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
-                            break;
+                        playerInvetory.Additem(treeInfo.itemsString[x], treeInfo.itemsAmount[x] / treeInfo.hits);
+                    }
+                    treeInfo.currenthits--;
+                    actiondelay = Time.time + 1;
+                    if (treeInfo.currenthits <= 0)
+                    {
+                        Destroy(overlappingTree);
+                    }
+                }
+                if (Vector3.Distance(this.transform.position, cursor.transform.position) <= 3)
+                {
+                    if (tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0)))
+                    {
+                        switch (tilemap.GetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0)).name)
+                        {
+                            case "Grass01":
+                                playerInvetory.Additem("Grass", 1);
+                                tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                                break;
+                            case "Grass02":
+                                playerInvetory.Additem("Grass", 1);
+                                tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                                break;
+                            case "Dirt01":
+                                playerInvetory.Additem("Dirt", 1);
+                                tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                                break;
+                            case "Dirt02":
+                                playerInvetory.Additem("Dirt", 1);
+                                tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                                break;
+                            case "Stone01":
+                                playerInvetory.Additem("Stone", 1);
+                                tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                                break;
+                            case "DirtStone01":
+                                playerInvetory.Additem("Stone", 1);
+                                tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                                break;
+                            default:
+                                tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                                break;
+                        }
+                        actiondelay = Time.time + 1;
                     }
                 }
             }
-        }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && allowAction)
-        {
-            if (playerInvetory.selectedItem.name != "")
+            if (Input.GetKeyDown(KeyCode.Mouse1) && allowAction)
             {
-                if (playerInvetory.selectedItem.amount != 0)
+                if (playerInvetory.selectedItem.name != "")
                 {
-                    if (!tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0)))
+                    if (playerInvetory.selectedItem.amount != 0)
                     {
-                        if (new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0) != new Vector3Int((int)this.transform.position.x, (int)this.transform.position.y, 0) && new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0) != new Vector3Int((int)this.transform.position.x, (int)this.transform.position.y - 1, 0))
+                        if (Vector3.Distance(this.transform.position, cursor.transform.position) <= 3)
                         {
-                            if (tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x - 1, (int)cursor.transform.position.y, 0)) || tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x + 1, (int)cursor.transform.position.y, 0)) || tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y - 1, 0)) || tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y + 1, 0)))
+                            if (!tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0)))
                             {
-                                playerInvetory.Removeitem(playerInvetory.selectedItem.name, 1);
-                                tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), playerInvetory.selectedItem.tiles[Random.Range(0, playerInvetory.selectedItem.tiles.Length)]);
+                                if (new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0) != new Vector3Int((int)this.transform.position.x, (int)this.transform.position.y, 0) && new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0) != new Vector3Int((int)this.transform.position.x, (int)this.transform.position.y - 1, 0))
+                                {
+                                    if (tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x - 1, (int)cursor.transform.position.y, 0)) || tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x + 1, (int)cursor.transform.position.y, 0)) || tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y - 1, 0)) || tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y + 1, 0)))
+                                    {
+                                        playerInvetory.Removeitem(playerInvetory.selectedItem.name, 1);
+                                        tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), playerInvetory.selectedItem.tiles[Random.Range(0, playerInvetory.selectedItem.tiles.Length)]);
+                                        actiondelay = Time.time + 1;
+                                    }
+                                }
                             }
                         }
                     }
