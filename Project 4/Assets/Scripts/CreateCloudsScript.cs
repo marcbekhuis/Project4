@@ -6,6 +6,8 @@ public class CreateCloudsScript : MonoBehaviour
 {
     public GameObject[] clouds = new GameObject[13];
     public GameObject startWall;
+    public int cloudAmount = 50;
+    public int cloudSpread = 200;
 
     int randomTime;
     float timer;
@@ -13,9 +15,9 @@ public class CreateCloudsScript : MonoBehaviour
 
     private void Start()
     {
-        for(int i = 0; i < 50; i++)
+        for(int i = 0; i < cloudAmount; i++)
         {
-            Instantiate(clouds[Random.Range(0, clouds.Length)], new Vector3(startWall.transform.position.x - Random.Range(0, 200), startWall.transform.position.y + Random.Range(-10f, 10f), 0), new Quaternion(0, 0, 0, 0));
+            Instantiate(clouds[Random.Range(0, clouds.Length)], new Vector3(startWall.transform.position.x - Random.Range(0, cloudSpread), startWall.transform.position.y + Random.Range(-10f, 10f), 0), new Quaternion(0, 0, 0, 0));
         }
     }    
 

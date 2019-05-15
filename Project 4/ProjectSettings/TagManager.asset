@@ -8,6 +8,7 @@ TagManager:
   - EndWall
   - Deadly
   - HealthUp
+  - AI
   layers:
   - Default
   - TransparentFX

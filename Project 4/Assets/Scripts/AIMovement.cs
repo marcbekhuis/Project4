@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class AIMovement : MonoBehaviour
 {
+    public Animator animator;
+
+    [Space]
+
     public float speed = 300;
     public float jumpForce = 150;
     public Vector2 jumpBoxSize = new Vector2(0.01f, 0.45f);
@@ -24,6 +28,7 @@ public class AIMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        animator.SetBool("Jump", Physics2D.OverlapBox(this.transform.position + new Vector3(jumpBoxPos.x * direction, jumpBoxPos.y, 0), jumpBoxSize, 0, 1 << LayerMask.NameToLayer("Solid")));
         if (Physics2D.OverlapBox(this.transform.position, floorBoxSize, 0, 1 << LayerMask.NameToLayer("Solid")) && Physics2D.OverlapBox(this.transform.position + new Vector3(jumpBoxPos.x * direction, jumpBoxPos.y, 0), jumpBoxSize, 0, 1 << LayerMask.NameToLayer("Solid")) && !Physics2D.OverlapBox(this.transform.position + new Vector3(wallBoxPos.x * direction, wallBoxPos.y, 0), wallBoxSize, 0, 1 << LayerMask.NameToLayer("Solid")))
         {
             rigidbody.AddForce(new Vector2(0, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
@@ -47,11 +52,21 @@ public class AIMovement : MonoBehaviour
             rethinkTime = Time.time + Random.Range(4,7);
         }
         rigidbody.velocity = new Vector2(speed * Random.Range(0,(float)direction) * Time.fixedDeltaTime, rigidbody.velocity.y);
+
+        if (rigidbody.velocity.x != 0)
+        {
+            animator.SetBool("Walk", true);
+        }
+        else
+        {
+            animator.SetBool("Walk", false);
+        }
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("AI"))
         {
             direction *= -1;
             this.transform.localScale = new Vector3(direction, 1, 1);
