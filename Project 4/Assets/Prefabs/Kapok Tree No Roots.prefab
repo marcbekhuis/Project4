@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 625694661271996987}
   - component: {fileID: 1820938639419790473}
+  - component: {fileID: 5900973068420235016}
   m_Layer: 0
   m_Name: Kapok Tree No Roots
   m_TagString: Tree
@@ -58,6 +59,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 5}
   m_EdgeRadius: 0
+--- !u!114 &5900973068420235016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625694661271996984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d540ed672ec3dc4f8770a4b755a1375, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hits: 4
+  currenthits: 0
+  itemsString:
+  - Wood
+  - Stick
+  - Leave
+  itemsAmount: 060000000900000007000000
 --- !u!1 &5627492004470955124
 GameObject:
   m_ObjectHideFlags: 0
