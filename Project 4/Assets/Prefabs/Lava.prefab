@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 7774866149373153325}
   - component: {fileID: 7774866149373153314}
   - component: {fileID: 7774866149373153315}
-  - component: {fileID: 7774866149373153324}
   - component: {fileID: 7774866149373153327}
   m_Layer: 0
   m_Name: Lava
-  m_TagString: Untagged
+  m_TagString: Deadly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +92,7 @@ Animator:
   m_GameObject: {fileID: 7774866149373153312}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2912e69b84055f74b9be130279c6f229, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -102,20 +101,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7774866149373153324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7774866149373153312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dbf63ab20b98c946a14f74e1220a696, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  respawnPoint: {fileID: 0}
 --- !u!61 &7774866149373153327
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -10,14 +10,11 @@ EditorBuildSettings:
     guid: 3924b010dbcdf1b429818f98f9a2a331
   - enabled: 1
     path: Assets/Scenes/Level1.unity
-    guid: 5cccb51a8a0c9fb489334293c59efc0b
+    guid: ddba3281ab9d32143a430e4b7c560756
   - enabled: 1
     path: Assets/Scenes/DeathScene.unity
     guid: 955a5a48528e6d24ba8325ff6da41160
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 950e007ad140c034f8daea2cc4c1705b
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   m_configObjects: {}
