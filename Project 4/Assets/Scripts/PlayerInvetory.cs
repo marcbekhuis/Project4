@@ -7,7 +7,7 @@ public class PlayerInvetory : MonoBehaviour
 {
     [System.Serializable]
     public struct item {
-        public item(string Name, int Amount, Sprite Image, bool Interactable, bool Food, int Foodvalue, bool BuildBlock, TileBase[] Tiles)
+        public item(string Name, int Amount, Sprite Image, bool Interactable, bool Food, int Foodvalue, bool BuildBlock, TileBase[] Tiles, bool IsSword, bool IsAxe, bool IsPickaxe)
         {
             name = Name;
             amount = Amount;
@@ -17,6 +17,9 @@ public class PlayerInvetory : MonoBehaviour
             food = Food;
             buildBlock = BuildBlock;
             tiles = Tiles;
+            isSword = IsSword;
+            isAxe = IsAxe;
+            isPickaxe = IsPickaxe;
         }
 
         public string name;
@@ -27,6 +30,9 @@ public class PlayerInvetory : MonoBehaviour
         public int foodvalue;
         public bool buildBlock;
         public TileBase[] tiles;
+        public bool isSword;
+        public bool isAxe;
+        public bool isPickaxe;
     }
 
     [System.Serializable]
@@ -159,6 +165,24 @@ public class PlayerInvetory : MonoBehaviour
                     else if (items[x].buildBlock)
                     {
                         selectedItem = items[x];
+                    }
+                    else if (items[x].isSword)
+                    {
+                        playerActions.swordEquipped = true;
+                        playerActions.pickaxeEquipped = false;
+                        playerActions.axeEquipped = false;
+                    }
+                    else if (items[x].isPickaxe)
+                    {
+                        playerActions.swordEquipped = false;
+                        playerActions.pickaxeEquipped = true;
+                        playerActions.axeEquipped = false;
+                    }
+                    else if (items[x].isAxe)
+                    {
+                        playerActions.swordEquipped = false;
+                        playerActions.pickaxeEquipped = false;
+                        playerActions.axeEquipped = true;
                     }
                     else
                     {

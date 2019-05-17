@@ -15,6 +15,10 @@ public class PlayerActions : MonoBehaviour
     GameObject overlappingTree;
     public GameObject cursor;
 
+    public GameObject swordBox;
+    public bool swordEquipped = false;
+    public bool axeEquipped = false;
+    public bool pickaxeEquipped = false; 
     public int offsetX;
     public int offsetY;
     float actiondelay;
@@ -32,6 +36,8 @@ public class PlayerActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         if (Input.GetKeyDown(KeyCode.I))
         {
             if (infoBook.activeSelf)
@@ -79,83 +85,110 @@ public class PlayerActions : MonoBehaviour
         }
         if (actiondelay < Time.time)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0) && allowAction)
+            if (axeEquipped || !axeEquipped && !pickaxeEquipped && !swordEquipped)
             {
-                if (overlappingTree != null)
+                if (Input.GetKeyDown(KeyCode.Mouse0) && allowAction)
                 {
-                    TreeInfo treeInfo = overlappingTree.GetComponent<TreeInfo>();
-                    for (int x = 0; x < treeInfo.itemsAmount.Length; x++)
+                    if (overlappingTree != null)
                     {
-                        playerInvetory.Additem(treeInfo.itemsString[x], treeInfo.itemsAmount[x] / treeInfo.hits);
-                    }
-                    treeInfo.currenthits--;
-                    actiondelay = Time.time + 1;
-                    if (treeInfo.currenthits <= 0)
-                    {
-                        Destroy(overlappingTree);
-                    }
-                }
-                Vector3Int cellpos = tilemap.WorldToCell(new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0));
-
-                if (Vector3.Distance(this.transform.position, cellpos) <= 3)
-                {
-                    if (tilemap.HasTile(cellpos))
-                    {
-                        switch (tilemap.GetTile(cellpos).name)
+                        TreeInfo treeInfo = overlappingTree.GetComponent<TreeInfo>();
+                        for (int x = 0; x < treeInfo.itemsAmount.Length; x++)
                         {
-                            case "Grass01":
-                                playerInvetory.Additem("Grass", 1);
-                                tilemap.SetTile(cellpos, null);
-                                break;
-                            case "Grass02":
-                                playerInvetory.Additem("Grass", 1);
-                                tilemap.SetTile(cellpos, null);
-                                break;
-                            case "Dirt01":
-                                playerInvetory.Additem("Dirt", 1);
-                                tilemap.SetTile(cellpos, null);
-                                break;
-                            case "Dirt02":
-                                playerInvetory.Additem("Dirt", 1);
-                                tilemap.SetTile(cellpos, null);
-                                break;
-                            case "Stone01":
-                                playerInvetory.Additem("Stone", 1);
-                                tilemap.SetTile(cellpos, null);
-                                break;
-                            case "DirtStone01":
-                                playerInvetory.Additem("Stone", 1);
-                                tilemap.SetTile(cellpos, null);
-                                break;
-                            case "Bedrock01":
-                                break;
-                            default:
-                                tilemap.SetTile(cellpos, null);
-                                break;
+                            playerInvetory.Additem(treeInfo.itemsString[x], treeInfo.itemsAmount[x] / treeInfo.hits);
                         }
-                        actiondelay = Time.time + 0.1f;
+                        treeInfo.currenthits--;
+                        actiondelay = Time.time + 1;
+                        if (treeInfo.currenthits <= 0)
+                        {
+                            Destroy(overlappingTree);
+                        }
                     }
                 }
             }
+            else if (pickaxeEquipped)
+            {
+                if (Input.GetKeyDown(KeyCode.Mouse0) && allowAction)
+                {
 
+
+                    Vector3Int cellpos = tilemap.WorldToCell(new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0));
+
+                    if (Vector3.Distance(this.transform.position, cellpos) <= 3)
+                    {
+                        if (tilemap.HasTile(cellpos))
+                        {
+                            switch (tilemap.GetTile(cellpos).name)
+                            {
+                                case "Grass01":
+                                    playerInvetory.Additem("Grass", 1);
+                                    tilemap.SetTile(cellpos, null);
+                                    break;
+                                case "Grass02":
+                                    playerInvetory.Additem("Grass", 1);
+                                    tilemap.SetTile(cellpos, null);
+                                    break;
+                                case "Dirt01":
+                                    playerInvetory.Additem("Dirt", 1);
+                                    tilemap.SetTile(cellpos, null);
+                                    break;
+                                case "Dirt02":
+                                    playerInvetory.Additem("Dirt", 1);
+                                    tilemap.SetTile(cellpos, null);
+                                    break;
+                                case "Stone01":
+                                    playerInvetory.Additem("Stone", 1);
+                                    tilemap.SetTile(cellpos, null);
+                                    break;
+                                case "DirtStone01":
+                                    playerInvetory.Additem("Stone", 1);
+                                    tilemap.SetTile(cellpos, null);
+                                    break;
+                                case "Bedrock01":
+                                    break;
+                                default:
+                                    tilemap.SetTile(cellpos, null);
+                                    break;
+                            }
+                            actiondelay = Time.time + 0.1f;
+                        }
+                    }
+                }
+            }
+            else if (swordEquipped)
+            {
+                if (Input.GetKeyDown(KeyCode.Mouse0) && allowAction)
+                {
+                    swordBox.SetActive(true);
+                }
+                if (Input.GetKeyUp(KeyCode.Mouse0) && allowAction)
+                {
+                    swordBox.SetActive(false);
+                }
+            }
+
+            else
+            {
+
+            
             if (Input.GetKeyDown(KeyCode.Mouse1) && allowAction)
             {
-                if (playerInvetory.selectedItem.name != "")
-                {
-                    if (playerInvetory.selectedItem.amount != 0)
+                    if (playerInvetory.selectedItem.name != "")
                     {
-                        Vector3Int cellpos = tilemap.WorldToCell(new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0));
-                        if (Vector3.Distance(this.transform.position, cellpos) <= 3)
+                        if (playerInvetory.selectedItem.amount != 0)
                         {
-                            if (!tilemap.HasTile(cellpos))
+                            Vector3Int cellpos = tilemap.WorldToCell(new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0));
+                            if (Vector3.Distance(this.transform.position, cellpos) <= 3)
                             {
-                                if (cellpos != this.transform.position && cellpos != new Vector3(this.transform.position.x, this.transform.position.y - 1, 0))
+                                if (!tilemap.HasTile(cellpos))
                                 {
-                                    if (tilemap.HasTile(new Vector3Int(cellpos.x - 1, cellpos.y, 0)) || tilemap.HasTile(new Vector3Int(cellpos.x + 1, cellpos.y, 0)) || tilemap.HasTile(new Vector3Int(cellpos.x, cellpos.y - 1, 0)) || tilemap.HasTile(new Vector3Int(cellpos.x, cellpos.y + 1, 0)))
+                                    if (cellpos != this.transform.position && cellpos != new Vector3(this.transform.position.x, this.transform.position.y - 1, 0))
                                     {
-                                        playerInvetory.Removeitem(playerInvetory.selectedItem.name, 1);
-                                        tilemap.SetTile(cellpos, playerInvetory.selectedItem.tiles[Random.Range(0, playerInvetory.selectedItem.tiles.Length)]);
-                                        actiondelay = Time.time + 1;
+                                        if (tilemap.HasTile(new Vector3Int(cellpos.x - 1, cellpos.y, 0)) || tilemap.HasTile(new Vector3Int(cellpos.x + 1, cellpos.y, 0)) || tilemap.HasTile(new Vector3Int(cellpos.x, cellpos.y - 1, 0)) || tilemap.HasTile(new Vector3Int(cellpos.x, cellpos.y + 1, 0)))
+                                        {
+                                            playerInvetory.Removeitem(playerInvetory.selectedItem.name, 1);
+                                            tilemap.SetTile(cellpos, playerInvetory.selectedItem.tiles[Random.Range(0, playerInvetory.selectedItem.tiles.Length)]);
+                                            actiondelay = Time.time + 1;
+                                        }
                                     }
                                 }
                             }
