@@ -37,6 +37,8 @@ public class UIInfo : MonoBehaviour
 
     void start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         timeText.text = "Time survived: " + timeMin.ToString("F0") + ":" + timeSec.ToString("F0");
     }
 
