@@ -95,43 +95,45 @@ public class PlayerActions : MonoBehaviour
                         Destroy(overlappingTree);
                     }
                 }
-                if (Vector3.Distance(this.transform.position, cursor.transform.position) <= 3)
+                Vector3Int cellpos = tilemap.WorldToCell(new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0));
+
+                if (Vector3.Distance(this.transform.position, cellpos) <= 3)
                 {
-                    if (tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0)))
+                    if (tilemap.HasTile(cellpos))
                     {
-                        switch (tilemap.GetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0)).name)
+                        switch (tilemap.GetTile(cellpos).name)
                         {
                             case "Grass01":
                                 playerInvetory.Additem("Grass", 1);
-                                tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                                tilemap.SetTile(cellpos, null);
                                 break;
                             case "Grass02":
                                 playerInvetory.Additem("Grass", 1);
-                                tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                                tilemap.SetTile(cellpos, null);
                                 break;
                             case "Dirt01":
                                 playerInvetory.Additem("Dirt", 1);
-                                tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                                tilemap.SetTile(cellpos, null);
                                 break;
                             case "Dirt02":
                                 playerInvetory.Additem("Dirt", 1);
-                                tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                                tilemap.SetTile(cellpos, null);
                                 break;
                             case "Stone01":
                                 playerInvetory.Additem("Stone", 1);
-                                tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                                tilemap.SetTile(cellpos, null);
                                 break;
                             case "DirtStone01":
                                 playerInvetory.Additem("Stone", 1);
-                                tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                                tilemap.SetTile(cellpos, null);
                                 break;
                             case "Bedrock01":
                                 break;
                             default:
-                                tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), null);
+                                tilemap.SetTile(cellpos, null);
                                 break;
                         }
-                        actiondelay = Time.time + 1;
+                        actiondelay = Time.time + 0.1f;
                     }
                 }
             }
@@ -142,16 +144,17 @@ public class PlayerActions : MonoBehaviour
                 {
                     if (playerInvetory.selectedItem.amount != 0)
                     {
-                        if (Vector3.Distance(this.transform.position, cursor.transform.position) <= 3)
+                        Vector3Int cellpos = tilemap.WorldToCell(new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0));
+                        if (Vector3.Distance(this.transform.position, cellpos) <= 3)
                         {
-                            if (!tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0)))
+                            if (!tilemap.HasTile(cellpos))
                             {
-                                if (new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0) != new Vector3Int((int)this.transform.position.x, (int)this.transform.position.y, 0) && new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0) != new Vector3Int((int)this.transform.position.x, (int)this.transform.position.y - 1, 0))
+                                if (cellpos != this.transform.position && cellpos != new Vector3(this.transform.position.x, this.transform.position.y - 1, 0))
                                 {
-                                    if (tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x - 1, (int)cursor.transform.position.y, 0)) || tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x + 1, (int)cursor.transform.position.y, 0)) || tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y - 1, 0)) || tilemap.HasTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y + 1, 0)))
+                                    if (tilemap.HasTile(new Vector3Int(cellpos.x - 1, cellpos.y, 0)) || tilemap.HasTile(new Vector3Int(cellpos.x + 1, cellpos.y, 0)) || tilemap.HasTile(new Vector3Int(cellpos.x, cellpos.y - 1, 0)) || tilemap.HasTile(new Vector3Int(cellpos.x, cellpos.y + 1, 0)))
                                     {
                                         playerInvetory.Removeitem(playerInvetory.selectedItem.name, 1);
-                                        tilemap.SetTile(new Vector3Int((int)cursor.transform.position.x, (int)cursor.transform.position.y, 0), playerInvetory.selectedItem.tiles[Random.Range(0, playerInvetory.selectedItem.tiles.Length)]);
+                                        tilemap.SetTile(cellpos, playerInvetory.selectedItem.tiles[Random.Range(0, playerInvetory.selectedItem.tiles.Length)]);
                                         actiondelay = Time.time + 1;
                                     }
                                 }
