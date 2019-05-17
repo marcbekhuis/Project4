@@ -9,6 +9,7 @@ TagManager:
   - Deadly
   - HealthUp
   - AI
+  - HealthRestore
   layers:
   - Default
   - TransparentFX
