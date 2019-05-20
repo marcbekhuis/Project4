@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2095750515216165097}
   - component: {fileID: 2095750515216165096}
   - component: {fileID: 2095750515216165099}
+  - component: {fileID: 2123939746733334467}
   m_Layer: 0
   m_Name: Elephant
   m_TagString: AI
@@ -102,6 +103,19 @@ MonoBehaviour:
   floorBoxSize: {x: 4.3, y: 0.01}
   jumpBoxPos: {x: 2.4, y: 0.33, z: 0}
   wallBoxPos: {x: 2.4, y: 1.6, z: 0}
+--- !u!114 &2123939746733334467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095750515216165102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e4cdb47e2749c4380d6fe21a363645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveData: {fileID: 0}
 --- !u!1 &2095750515395245945
 GameObject:
   m_ObjectHideFlags: 0

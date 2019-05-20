@@ -17,7 +17,6 @@ public class SaveData : MonoBehaviour
         {
             if (PlayerPrefs.GetFloat(x.ToString() + "TimeSec") + PlayerPrefs.GetFloat(x.ToString() + "TimeMin") * 60 < PlayerPrefs.GetFloat(PlayerPrefs.GetString("CurrentPlayer") + "TimeSec") + PlayerPrefs.GetFloat(PlayerPrefs.GetString("CurrentPlayer") + "TimeMin") * 60)
             {
-                Debug.Log("Save start");
                 float timeSec = PlayerPrefs.GetFloat(x.ToString() + "TimeSec");
                 float timeMin = PlayerPrefs.GetFloat(x.ToString() + "TimeMin");
                 string playerName = PlayerPrefs.GetString(x.ToString() + "PlayerName");
@@ -43,10 +42,8 @@ public class SaveData : MonoBehaviour
                     timeMin = timeMin2;
                     playerName = playerName2;
                 }
-                Debug.Log("Save done");
                 break;
             }
-            Debug.Log("Function called");
         }
     }
     public void SaveCurrentPlayer(InputField inputfield)

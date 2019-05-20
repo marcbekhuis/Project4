@@ -168,21 +168,48 @@ public class PlayerInvetory : MonoBehaviour
                     }
                     else if (items[x].isSword)
                     {
-                        playerActions.swordEquipped = true;
-                        playerActions.pickaxeEquipped = false;
-                        playerActions.axeEquipped = false;
+                        if (playerActions.swordEquipped)
+                        {
+                            playerActions.swordEquipped = false;
+                            playerActions.pickaxeEquipped = false;
+                            playerActions.axeEquipped = false;
+                        }
+                        else
+                        {
+                            playerActions.swordEquipped = true;
+                            playerActions.pickaxeEquipped = false;
+                            playerActions.axeEquipped = false;
+                        }
                     }
                     else if (items[x].isPickaxe)
                     {
-                        playerActions.swordEquipped = false;
-                        playerActions.pickaxeEquipped = true;
-                        playerActions.axeEquipped = false;
+                        if (playerActions.pickaxeEquipped)
+                        {
+                            playerActions.swordEquipped = false;
+                            playerActions.pickaxeEquipped = false;
+                            playerActions.axeEquipped = false;
+                        }
+                        else
+                        {
+                            playerActions.swordEquipped = false;
+                            playerActions.pickaxeEquipped = true;
+                            playerActions.axeEquipped = false;
+                        }
                     }
                     else if (items[x].isAxe)
                     {
-                        playerActions.swordEquipped = false;
-                        playerActions.pickaxeEquipped = false;
-                        playerActions.axeEquipped = true;
+                        if (playerActions.axeEquipped)
+                        {
+                            playerActions.swordEquipped = false;
+                            playerActions.pickaxeEquipped = false;
+                            playerActions.axeEquipped = false;
+                        }
+                        else
+                        {
+                            playerActions.swordEquipped = false;
+                            playerActions.pickaxeEquipped = false;
+                            playerActions.axeEquipped = true;
+                        }
                     }
                     else
                     {
@@ -254,7 +281,7 @@ public class PlayerInvetory : MonoBehaviour
         {
             for (int y = 0; y < items.Length; y++)
             {
-                if (items[y].name == selectedCraftingItem.needItemName[x])
+                if (items[y].name == selectedCraftingItem.needItemName[x] && items[y].amount - selectedCraftingItem.needItemAmount[x] >= 0)
                 {
                     enough++;
                     break;
