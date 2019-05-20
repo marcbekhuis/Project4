@@ -12,6 +12,7 @@ public class PlayerHealthScript : MonoBehaviour
     public Sprite halfHeart;
     public Sprite emptyHeart;
     public GameObject healtchContainer;
+    public SaveData saveData;
 
     private int playerHealth;
     private int fullPlayerHealth;
@@ -35,6 +36,7 @@ public class PlayerHealthScript : MonoBehaviour
     {
         if (actualPlayerHealth <= 0)
         {
+            saveData.SaveDataTime();
             SceneManager.LoadScene(2);
         }
     }
@@ -55,7 +57,7 @@ public class PlayerHealthScript : MonoBehaviour
             Changeheart();
         }
 
-        if (collision.gameObject.CompareTag("HealthUp"))
+        else if (collision.gameObject.CompareTag("HealthUp"))
         {
             if (playerHealth <= 19)
             {
@@ -85,7 +87,7 @@ public class PlayerHealthScript : MonoBehaviour
             collision.gameObject.SetActive(false);
         }
 
-        if (collision.gameObject.CompareTag("HealtRestore"))
+        else if (collision.gameObject.CompareTag("HealtRestore"))
         {
             if (playerHealth != fullPlayerHealth)
             {
