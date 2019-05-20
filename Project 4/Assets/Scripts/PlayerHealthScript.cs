@@ -84,6 +84,19 @@ public class PlayerHealthScript : MonoBehaviour
             }
             collision.gameObject.SetActive(false);
         }
+
+        if (collision.gameObject.CompareTag("HealtRestore"))
+        {
+            if (playerHealth != fullPlayerHealth)
+            {
+                playerHealth += 2;
+
+                if (playerHealth > fullPlayerHealth)
+                {
+                    playerHealth = fullPlayerHealth;
+                }
+            }
+        }
     }
 
     private void Changeheart()

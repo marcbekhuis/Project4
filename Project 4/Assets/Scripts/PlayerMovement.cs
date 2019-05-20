@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     private void Start()
     {
+        Cursor.visible = false;
+
         rigidbody = GetComponent<Rigidbody2D>();
         playerActions = GetComponent<PlayerActions>();
     }
