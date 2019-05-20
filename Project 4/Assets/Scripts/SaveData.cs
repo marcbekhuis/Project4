@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class SaveData : MonoBehaviour
 {
@@ -45,9 +46,10 @@ public class SaveData : MonoBehaviour
                 break;
             }
         }
+
     }
     public void SaveCurrentPlayer(InputField inputfield)
-    {   
+    {
         PlayerPrefs.SetString("CurrentPlayer", inputfield.text);
     }
 
