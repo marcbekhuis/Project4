@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AIHealthScript
     - AIMovement
     - AudioScript
     - CameraController
@@ -17,6 +18,7 @@ ScriptsOnlyBuild:
     - PlayerHealthScript
     - PlayerInvetory
     - PlayerMovement
+    - SaveData
     - SkyBoxMovement
     - TreeInfo
     - UIInfo
@@ -26,8 +28,6 @@ ScriptsOnlyBuild:
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
     - UnityEditor.Graphs.AnimatorControllerTool
-    UnityEditor.TestRunner.dll:
-    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -36,6 +36,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.GridLayoutGroup
     - UnityEngine.UI.Image
+    - UnityEngine.UI.InputField
     - UnityEngine.UI.Text
     - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
@@ -71,19 +72,19 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
+      Script: {instanceID: 9322}
+    - Class: 114
       Script: {instanceID: 9324}
     - Class: 114
-      Script: {instanceID: 9326}
+      Script: {instanceID: 9330}
     - Class: 114
-      Script: {instanceID: 9332}
+      Script: {instanceID: 9336}
     - Class: 114
-      Script: {instanceID: 9338}
+      Script: {instanceID: 9344}
     - Class: 114
-      Script: {instanceID: 9346}
+      Script: {instanceID: 9380}
     - Class: 114
       Script: {instanceID: 9382}
-    - Class: 114
-      Script: {instanceID: 9384}
     - Class: 114
       Script: {instanceID: 9970}
     - Class: 114
@@ -144,35 +145,39 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 606}
+      Script: {instanceID: 602}
+    - Class: 114
+      Script: {instanceID: 9298}
+    - Class: 114
+      Script: {instanceID: 9322}
     - Class: 114
       Script: {instanceID: 9324}
     - Class: 114
-      Script: {instanceID: 9326}
+      Script: {instanceID: 9330}
     - Class: 114
-      Script: {instanceID: 9332}
+      Script: {instanceID: 9336}
     - Class: 114
       Script: {instanceID: 9338}
     - Class: 114
-      Script: {instanceID: 9340}
+      Script: {instanceID: 9344}
     - Class: 114
-      Script: {instanceID: 9346}
+      Script: {instanceID: 9380}
     - Class: 114
       Script: {instanceID: 9382}
     - Class: 114
-      Script: {instanceID: 9384}
+      Script: {instanceID: 9392}
     - Class: 114
-      Script: {instanceID: 9394}
+      Script: {instanceID: 9420}
     - Class: 114
-      Script: {instanceID: 9422}
+      Script: {instanceID: 9434}
     - Class: 114
-      Script: {instanceID: 9436}
+      Script: {instanceID: 9594}
     - Class: 114
-      Script: {instanceID: 9596}
+      Script: {instanceID: 9630}
     - Class: 114
-      Script: {instanceID: 9632}
+      Script: {instanceID: 9700}
     - Class: 114
-      Script: {instanceID: 9702}
+      Script: {instanceID: 9724}
     - Class: 114
       Script: {instanceID: 9824}
     - Class: 114
@@ -243,19 +248,23 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
+      Script: {instanceID: 9298}
+    - Class: 114
+      Script: {instanceID: 9322}
+    - Class: 114
       Script: {instanceID: 9324}
     - Class: 114
-      Script: {instanceID: 9326}
+      Script: {instanceID: 9330}
     - Class: 114
-      Script: {instanceID: 9332}
+      Script: {instanceID: 9336}
     - Class: 114
-      Script: {instanceID: 9338}
+      Script: {instanceID: 9344}
     - Class: 114
       Script: {instanceID: 9346}
     - Class: 114
-      Script: {instanceID: 9382}
+      Script: {instanceID: 9380}
     - Class: 114
-      Script: {instanceID: 9384}
+      Script: {instanceID: 9382}
     - Class: 114
       Script: {instanceID: 9922}
     - Class: 114
@@ -314,33 +323,33 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 606}
+      Script: {instanceID: 602}
+    - Class: 114
+      Script: {instanceID: 9322}
     - Class: 114
       Script: {instanceID: 9324}
     - Class: 114
-      Script: {instanceID: 9326}
+      Script: {instanceID: 9330}
     - Class: 114
-      Script: {instanceID: 9332}
+      Script: {instanceID: 9336}
     - Class: 114
       Script: {instanceID: 9338}
     - Class: 114
-      Script: {instanceID: 9340}
+      Script: {instanceID: 9344}
     - Class: 114
-      Script: {instanceID: 9346}
+      Script: {instanceID: 9380}
     - Class: 114
       Script: {instanceID: 9382}
     - Class: 114
-      Script: {instanceID: 9384}
+      Script: {instanceID: 9392}
     - Class: 114
-      Script: {instanceID: 9394}
+      Script: {instanceID: 9420}
     - Class: 114
-      Script: {instanceID: 9422}
+      Script: {instanceID: 9434}
     - Class: 114
-      Script: {instanceID: 9436}
+      Script: {instanceID: 9594}
     - Class: 114
-      Script: {instanceID: 9596}
-    - Class: 114
-      Script: {instanceID: 9632}
+      Script: {instanceID: 9630}
     - Class: 114
       Script: {instanceID: 9824}
     - Class: 114
@@ -422,6 +431,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ActivationTrack
+  - hash:
+      serializedVersion: 2
+      Hash: fffbb09ea0c2a6a04e1b3e6086438f20
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SaveData
   - hash:
       serializedVersion: 2
       Hash: cf9f5cf2c3145a37ac07f00e50e460f9
@@ -886,6 +901,12 @@ ScriptsOnlyBuild:
     className: AnalyticsTracker
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AIHealthScript
+  - hash:
+      serializedVersion: 2
       Hash: 0fb27be807aa299702f28ad0bcad1f46
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -964,7 +985,7 @@ ScriptsOnlyBuild:
     className: DeathSceneAudio
   - hash:
       serializedVersion: 2
-      Hash: 24a996a1cd3b645425adc145f292599d
+      Hash: 384adf936511602787575ac77cf1b9e7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerInvetory
@@ -1066,7 +1087,7 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: c30821b823a714b0b495acce6f6be3fa
+      Hash: 3b5bff10f92ce42dd08621b7cfd46b92
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerActions
@@ -1084,7 +1105,7 @@ ScriptsOnlyBuild:
     className: AudioTrack
   - hash:
       serializedVersion: 2
-      Hash: 840aab3e3ea0cc70153cb8421b5b52de
+      Hash: e2406bce8cbdfab05fa64036d25b2734
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerHealthScript
@@ -1160,5 +1181,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Level1.unity
   - Assets/Scenes/DeathScene.unity
   - Assets/Scenes/Tutorial.unity
-  playerPath: C:/Users/Gebruiker/Desktop/School/Projecten/Periode 4/Project 4 Prototype
-    2/Project 4.exe
+  playerPath: D:/Unity/Builds/Project 4/Project 4.exe
