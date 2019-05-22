@@ -64,7 +64,6 @@ public class PlayerInvetory : MonoBehaviour
     public GameObject craftingItemIcon;
     public item selectedItem;
     public GameObject selectedCraftingIcon;
-    public bool albatros = false;
     craftingItem selectedCraftingItem;
 
     [Space]

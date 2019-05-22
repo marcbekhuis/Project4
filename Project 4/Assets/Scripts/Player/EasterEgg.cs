@@ -4,19 +4,27 @@ using UnityEngine;
 
 public class EasterEgg : MonoBehaviour
 {
-    public PlayerInvetory playerInvetory;
+    public PlayerMovement playerMovement;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Albetros"))
         {
-            playerInvetory.albatros = true;
+            playerMovement.fly = true;
             collision.gameObject.transform.parent = this.transform;
             try
             {
                 Destroy(collision.gameObject.GetComponent<CloudsScript>());
                 Destroy(collision.gameObject.GetComponent<Rigidbody2D>());
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                this.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.05f;
             }
             catch
             {
