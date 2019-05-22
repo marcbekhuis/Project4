@@ -21,35 +21,42 @@ public class PlayerActions : MonoBehaviour
     public bool pickaxeEquipped = false; 
     public int offsetX;
     public int offsetY;
-    private int xAxis;
-    private int yAxis;
+    public int controllerMode = 0;
+    int xAxis;
+    int yAxis;
     float actiondelay;
 
     private void Start()
     {
         cursor.transform.position = new Vector3(0, 0, 0);
         playerInvetory = GetComponent<PlayerInvetory>();
+        controllerMode = PlayerPrefs.GetInt("controllerMode");
     }
 
     private void FixedUpdate()
     {
-      cursor.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x + offsetX, Camera.main.ScreenToWorldPoint(Input.mousePosition).y + offsetY, 0);
+        if (controllerMode == 0)
+        {
+            cursor.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x + offsetX, Camera.main.ScreenToWorldPoint(Input.mousePosition).y + offsetY, 0);
+        }
+        else
+        {
+            if (Input.GetAxis("5th Axis") > 0)
+            {
+                xAxis++;
+                cursor.transform.position = new Vector3(0 + xAxis, 0, 0);
+            }
+            else if (Input.GetAxis("5th Axis") < 0)
+            {
+                xAxis--;
+                cursor.transform.position = new Vector3(0 + xAxis, 0, 0);
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("5th Axis") > 0)
-        {
-            xAxis++;
-            cursor.transform.position = new Vector3(0 + xAxis, 0, 0);
-        }
-        else if (Input.GetAxis("5th Axis") < 0)
-        {
-            xAxis--;
-            cursor.transform.position = new Vector3(0 + xAxis, 0, 0);
-        }
-
         if (Input.GetKeyDown(KeyCode.I))
         {
             if (infoBook.activeSelf)
