@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -2285831326689819276}
   m_Layer: 0
   m_Name: Albatros
-  m_TagString: Untagged
+  m_TagString: Albetros
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,5 +161,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.3333335, y: 1.3333334}
+  m_Size: {x: 1.7, y: 1}
   m_EdgeRadius: 0
