@@ -10,6 +10,11 @@ public class OptionsMenu : MonoBehaviour
     public int controllerMode = 0;
     private bool fullscreen = true;
 
+    private void Start()
+    {
+        controllerMode = PlayerPrefs.GetInt("controllerMode");
+    }
+
     public void FullscreenOption()
     {
         if (fullscreen == false)

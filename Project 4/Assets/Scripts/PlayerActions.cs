@@ -22,6 +22,7 @@ public class PlayerActions : MonoBehaviour
     public int offsetX;
     public int offsetY;
     public int controllerMode = 0;
+    public int cursorSpeed;
     int xAxis;
     int yAxis;
     float actiondelay;
@@ -41,15 +42,26 @@ public class PlayerActions : MonoBehaviour
         }
         else
         {
-            if (Input.GetAxis("5th Axis") > 0)
+            if (Input.GetAxis("HorizontalController") > 0.25)
             {
                 xAxis++;
-                cursor.transform.position = new Vector3(0 + xAxis, 0, 0);
+                cursor.transform.position = new Vector3(cursorSpeed + xAxis * Time.deltaTime, cursor.transform.position.y, 0);
             }
-            else if (Input.GetAxis("5th Axis") < 0)
+            else if (Input.GetAxis("HorizontalController") < -0.25)
             {
                 xAxis--;
-                cursor.transform.position = new Vector3(0 + xAxis, 0, 0);
+                cursor.transform.position = new Vector3(cursorSpeed + xAxis * Time.deltaTime, cursor.transform.position.y, 0);
+            }
+
+            if (Input.GetAxis("VerticalController") > 0.25)
+            {
+                yAxis--;
+                cursor.transform.position = new Vector3(cursor.transform.position.x, cursorSpeed + yAxis * Time.deltaTime, 0);
+            }
+            else if (Input.GetAxis("VerticalController") < -0.25)
+            {
+                yAxis++;
+                cursor.transform.position = new Vector3(cursor.transform.position.x, cursorSpeed + yAxis * Time.deltaTime, 0);
             }
         }
     }
