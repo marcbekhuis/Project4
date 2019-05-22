@@ -87,7 +87,7 @@ public class PlayerHealthScript : MonoBehaviour
             collision.gameObject.SetActive(false);
         }
 
-        else if (collision.gameObject.CompareTag("HealtRestore"))
+        else if (collision.gameObject.CompareTag("HealthRestore"))
         {
             if (playerHealth != fullPlayerHealth)
             {
