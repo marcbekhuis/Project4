@@ -9,13 +9,14 @@ public class PlayerActions : MonoBehaviour
     public GameObject inventory;
     public GameObject pauseMenu;
     public Tilemap tilemap;
+    public GameObject player;
+    public GameObject cursor;
+    public GameObject swordBox;
     PlayerInvetory playerInvetory;
+    GameObject overlappingTree;
+
     public bool allowAction = true;
     public bool gamePaused = false;
-    GameObject overlappingTree;
-    public GameObject cursor;
-
-    public GameObject swordBox;
     public bool swordEquipped = false;
     public bool axeEquipped = false;
     public bool pickaxeEquipped = false; 
@@ -45,23 +46,23 @@ public class PlayerActions : MonoBehaviour
             if (Input.GetAxis("HorizontalController") > 0.25)
             {
                 xAxis++;
-                cursor.transform.position = new Vector3(cursorSpeed + xAxis * Time.deltaTime, cursor.transform.position.y, 0);
+                cursor.transform.position = new Vector3(cursorSpeed * xAxis * Time.deltaTime, cursor.transform.position.y, 0);
             }
             else if (Input.GetAxis("HorizontalController") < -0.25)
             {
                 xAxis--;
-                cursor.transform.position = new Vector3(cursorSpeed + xAxis * Time.deltaTime, cursor.transform.position.y, 0);
+                cursor.transform.position = new Vector3(cursorSpeed * xAxis * Time.deltaTime, cursor.transform.position.y, 0);
             }
 
             if (Input.GetAxis("VerticalController") > 0.25)
             {
                 yAxis--;
-                cursor.transform.position = new Vector3(cursor.transform.position.x, cursorSpeed + yAxis * Time.deltaTime, 0);
+                cursor.transform.position = new Vector3(cursor.transform.position.x, cursorSpeed * yAxis * Time.deltaTime, 0);
             }
-            else if (Input.GetAxis("VerticalController") < -0.25)
+            else if (Input.GetAxis("VerticalController") < -0.25 )
             {
                 yAxis++;
-                cursor.transform.position = new Vector3(cursor.transform.position.x, cursorSpeed + yAxis * Time.deltaTime, 0);
+                cursor.transform.position = new Vector3(cursor.transform.position.x, cursorSpeed * yAxis * Time.deltaTime, 0);
             }
         }
     }
@@ -118,7 +119,7 @@ public class PlayerActions : MonoBehaviour
         {
             if (axeEquipped || !axeEquipped && !pickaxeEquipped && !swordEquipped)
             {
-                if (Input.GetKeyDown(KeyCode.Mouse0) && allowAction)
+                if (Input.GetKeyDown(KeyCode.Mouse0) && allowAction || Input.GetKeyDown(KeyCode.JoystickButton3) && allowAction)
                 {
                     if (overlappingTree != null)
                     {
@@ -139,7 +140,7 @@ public class PlayerActions : MonoBehaviour
                 if (!axeEquipped && !pickaxeEquipped && !swordEquipped)
                 {
 
-                    if (Input.GetKeyDown(KeyCode.Mouse1) && allowAction)
+                    if (Input.GetKeyDown(KeyCode.Mouse1) && allowAction || Input.GetKeyDown(KeyCode.JoystickButton3) && allowAction)
                     {
                         if (playerInvetory.selectedItem.name != "")
                         {
@@ -168,7 +169,7 @@ public class PlayerActions : MonoBehaviour
             }
             else if (pickaxeEquipped)
             {
-                if (Input.GetKeyDown(KeyCode.Mouse0) && allowAction)
+                if (Input.GetKeyDown(KeyCode.Mouse0) && allowAction || Input.GetKeyDown(KeyCode.JoystickButton3) && allowAction)
                 {
 
 
@@ -217,11 +218,11 @@ public class PlayerActions : MonoBehaviour
             }
             else if (swordEquipped)
             {
-                if (Input.GetKeyDown(KeyCode.Mouse0) && allowAction)
+                if (Input.GetKeyDown(KeyCode.Mouse0) && allowAction || Input.GetKeyDown(KeyCode.JoystickButton3) && allowAction)
                 {
                     swordBox.SetActive(true);
                 }
-                if (Input.GetKeyUp(KeyCode.Mouse0) && allowAction)
+                if (Input.GetKeyUp(KeyCode.Mouse0) && allowAction || Input.GetKeyDown(KeyCode.JoystickButton3) && allowAction)
                 {
                     swordBox.SetActive(false);
                 }
