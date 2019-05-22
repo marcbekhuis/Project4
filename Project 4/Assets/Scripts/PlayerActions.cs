@@ -135,6 +135,36 @@ public class PlayerActions : MonoBehaviour
                         }
                     }
                 }
+
+                if (!axeEquipped && !pickaxeEquipped && !swordEquipped)
+                {
+
+                    if (Input.GetKeyDown(KeyCode.Mouse1) && allowAction)
+                    {
+                        if (playerInvetory.selectedItem.name != "")
+                        {
+                            if (playerInvetory.selectedItem.amount != 0)
+                            {
+                                Vector3Int cellpos = tilemap.WorldToCell(new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0));
+                                if (Vector3.Distance(this.transform.position, cellpos) <= 3)
+                                {
+                                    if (!tilemap.HasTile(cellpos))
+                                    {
+                                        if (cellpos != this.transform.position && cellpos != new Vector3(this.transform.position.x, this.transform.position.y - 1, 0))
+                                        {
+                                            if (tilemap.HasTile(new Vector3Int(cellpos.x - 1, cellpos.y, 0)) || tilemap.HasTile(new Vector3Int(cellpos.x + 1, cellpos.y, 0)) || tilemap.HasTile(new Vector3Int(cellpos.x, cellpos.y - 1, 0)) || tilemap.HasTile(new Vector3Int(cellpos.x, cellpos.y + 1, 0)))
+                                            {
+                                                playerInvetory.Removeitem(playerInvetory.selectedItem.name, 1);
+                                                tilemap.SetTile(cellpos, playerInvetory.selectedItem.tiles[Random.Range(0, playerInvetory.selectedItem.tiles.Length)]);
+                                                actiondelay = Time.time + 1;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
             else if (pickaxeEquipped)
             {
@@ -194,37 +224,6 @@ public class PlayerActions : MonoBehaviour
                 if (Input.GetKeyUp(KeyCode.Mouse0) && allowAction)
                 {
                     swordBox.SetActive(false);
-                }
-            }
-
-            else
-            {
-
-            
-            if (Input.GetKeyDown(KeyCode.Mouse1) && allowAction)
-            {
-                    if (playerInvetory.selectedItem.name != "")
-                    {
-                        if (playerInvetory.selectedItem.amount != 0)
-                        {
-                            Vector3Int cellpos = tilemap.WorldToCell(new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0));
-                            if (Vector3.Distance(this.transform.position, cellpos) <= 3)
-                            {
-                                if (!tilemap.HasTile(cellpos))
-                                {
-                                    if (cellpos != this.transform.position && cellpos != new Vector3(this.transform.position.x, this.transform.position.y - 1, 0))
-                                    {
-                                        if (tilemap.HasTile(new Vector3Int(cellpos.x - 1, cellpos.y, 0)) || tilemap.HasTile(new Vector3Int(cellpos.x + 1, cellpos.y, 0)) || tilemap.HasTile(new Vector3Int(cellpos.x, cellpos.y - 1, 0)) || tilemap.HasTile(new Vector3Int(cellpos.x, cellpos.y + 1, 0)))
-                                        {
-                                            playerInvetory.Removeitem(playerInvetory.selectedItem.name, 1);
-                                            tilemap.SetTile(cellpos, playerInvetory.selectedItem.tiles[Random.Range(0, playerInvetory.selectedItem.tiles.Length)]);
-                                            actiondelay = Time.time + 1;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
                 }
             }
         }
