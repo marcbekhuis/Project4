@@ -11,39 +11,42 @@ public class SaveData : MonoBehaviour
 
     public void SaveDataTime()
     {
-        PlayerPrefs.SetFloat(PlayerPrefs.GetString("CurrentPlayer") + "TimeSec", uIInfo.timeSec);
-        PlayerPrefs.SetFloat(PlayerPrefs.GetString("CurrentPlayer") + "TimeMin", uIInfo.timeMin);
-
-        for (int x = 0; x < 8; x++)
+        if (PlayerPrefs.GetString("CurrentPlayer") != "")
         {
-            if (PlayerPrefs.GetFloat(x.ToString() + "TimeSec") + PlayerPrefs.GetFloat(x.ToString() + "TimeMin") * 60 < PlayerPrefs.GetFloat(PlayerPrefs.GetString("CurrentPlayer") + "TimeSec") + PlayerPrefs.GetFloat(PlayerPrefs.GetString("CurrentPlayer") + "TimeMin") * 60)
+            PlayerPrefs.SetFloat(PlayerPrefs.GetString("CurrentPlayer") + "TimeSec", uIInfo.timeSec);
+            PlayerPrefs.SetFloat(PlayerPrefs.GetString("CurrentPlayer") + "TimeMin", uIInfo.timeMin);
+
+            for (int x = 0; x < 8; x++)
             {
-                float timeSec = PlayerPrefs.GetFloat(x.ToString() + "TimeSec");
-                float timeMin = PlayerPrefs.GetFloat(x.ToString() + "TimeMin");
-                string playerName = PlayerPrefs.GetString(x.ToString() + "PlayerName");
-
-                float timeSec2;
-                float timeMin2;
-                string playerName2;
-
-                PlayerPrefs.SetFloat(x.ToString() + "TimeSec", PlayerPrefs.GetFloat(PlayerPrefs.GetString("CurrentPlayer") + "TimeSec"));
-                PlayerPrefs.SetFloat(x.ToString() + "TimeMin", PlayerPrefs.GetFloat(PlayerPrefs.GetString("CurrentPlayer") + "TimeMin"));
-                PlayerPrefs.SetString(x.ToString() + "PlayerName", PlayerPrefs.GetString("CurrentPlayer"));
-                for (int y = 1; y < 8; y++)
+                if (PlayerPrefs.GetFloat(x.ToString() + "TimeSec") + PlayerPrefs.GetFloat(x.ToString() + "TimeMin") * 60 < PlayerPrefs.GetFloat(PlayerPrefs.GetString("CurrentPlayer") + "TimeSec") + PlayerPrefs.GetFloat(PlayerPrefs.GetString("CurrentPlayer") + "TimeMin") * 60)
                 {
-                    timeSec2 = PlayerPrefs.GetFloat(y.ToString() + "TimeSec");
-                    timeMin2 = PlayerPrefs.GetFloat(y.ToString() + "TimeMin");
-                    playerName2 = PlayerPrefs.GetString(y.ToString() + "PlayerName");
+                    float timeSec = PlayerPrefs.GetFloat(x.ToString() + "TimeSec");
+                    float timeMin = PlayerPrefs.GetFloat(x.ToString() + "TimeMin");
+                    string playerName = PlayerPrefs.GetString(x.ToString() + "PlayerName");
 
-                    PlayerPrefs.SetFloat(y.ToString() + "TimeSec", timeSec);
-                    PlayerPrefs.SetFloat(y.ToString() + "TimeMin", timeMin);
-                    PlayerPrefs.SetString(y.ToString() + "PlayerName", playerName);
+                    float timeSec2;
+                    float timeMin2;
+                    string playerName2;
 
-                    timeSec = timeSec2;
-                    timeMin = timeMin2;
-                    playerName = playerName2;
+                    PlayerPrefs.SetFloat(x.ToString() + "TimeSec", PlayerPrefs.GetFloat(PlayerPrefs.GetString("CurrentPlayer") + "TimeSec"));
+                    PlayerPrefs.SetFloat(x.ToString() + "TimeMin", PlayerPrefs.GetFloat(PlayerPrefs.GetString("CurrentPlayer") + "TimeMin"));
+                    PlayerPrefs.SetString(x.ToString() + "PlayerName", PlayerPrefs.GetString("CurrentPlayer"));
+                    for (int y = 1; y < 8; y++)
+                    {
+                        timeSec2 = PlayerPrefs.GetFloat(y.ToString() + "TimeSec");
+                        timeMin2 = PlayerPrefs.GetFloat(y.ToString() + "TimeMin");
+                        playerName2 = PlayerPrefs.GetString(y.ToString() + "PlayerName");
+
+                        PlayerPrefs.SetFloat(y.ToString() + "TimeSec", timeSec);
+                        PlayerPrefs.SetFloat(y.ToString() + "TimeMin", timeMin);
+                        PlayerPrefs.SetString(y.ToString() + "PlayerName", playerName);
+
+                        timeSec = timeSec2;
+                        timeMin = timeMin2;
+                        playerName = playerName2;
+                    }
+                    break;
                 }
-                break;
             }
         }
 
