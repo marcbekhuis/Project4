@@ -30,7 +30,7 @@ public class PlayerActions : MonoBehaviour
 
     private void FixedUpdate()
     {
-        cursor.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x + offsetX, Camera.main.ScreenToWorldPoint(Input.mousePosition).y + offsetY, 0);
+      cursor.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x + offsetX, Camera.main.ScreenToWorldPoint(Input.mousePosition).y + offsetY, 0);
     }
 
     // Update is called once per frame
