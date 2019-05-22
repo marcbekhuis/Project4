@@ -21,10 +21,13 @@ public class PlayerActions : MonoBehaviour
     public bool pickaxeEquipped = false; 
     public int offsetX;
     public int offsetY;
+    private int xAxis;
+    private int yAxis;
     float actiondelay;
 
     private void Start()
     {
+        cursor.transform.position = new Vector3(0, 0, 0);
         playerInvetory = GetComponent<PlayerInvetory>();
     }
 
@@ -36,7 +39,16 @@ public class PlayerActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetAxis("5th Axis") > 0)
+        {
+            xAxis++;
+            cursor.transform.position = new Vector3(0 + xAxis, 0, 0);
+        }
+        else if (Input.GetAxis("5th Axis") < 0)
+        {
+            xAxis--;
+            cursor.transform.position = new Vector3(0 + xAxis, 0, 0);
+        }
 
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -68,7 +80,7 @@ public class PlayerActions : MonoBehaviour
                 allowAction = false;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+        else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P) || Input.GetKey(KeyCode.JoystickButton6))
         {
             if (pauseMenu.activeSelf)
             {

@@ -24,15 +24,15 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
             {
-                if (Input.GetKey(KeyCode.A))
+                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("Horizontal") < 0)
                 {
-                    if (!Input.GetKey(KeyCode.D))
+                    if (!Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0)
                     {
-                        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+                        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.JoystickButton1))
                         {
                             rigidbody.velocity = new Vector2(-1 * Time.fixedDeltaTime * crouchSpeed, rigidbody.velocity.y);
                         }
-                        else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                        else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.JoystickButton2))
                         {
                             rigidbody.velocity = new Vector2(-1 * Time.fixedDeltaTime * runSpeed, rigidbody.velocity.y);
                         }
@@ -43,15 +43,15 @@ public class PlayerMovement : MonoBehaviour
                         playerImage.transform.localScale = new Vector3(1, 1, 1);
                     }
                 }
-                else if (Input.GetKey(KeyCode.D))
+                else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0)
                 {
-                    if (!Input.GetKey(KeyCode.A))
+                    if (!Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("Horizontal") < 0)
                     {
-                        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+                        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.Joystick1Button1))
                         {
                             rigidbody.velocity = new Vector2(1 * Time.fixedDeltaTime * crouchSpeed, rigidbody.velocity.y);
                         }
-                        else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                        else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.JoystickButton2))
                         {
                             rigidbody.velocity = new Vector2(1 * Time.fixedDeltaTime * runSpeed, rigidbody.velocity.y);
                         }
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
             }
             if (!inAir)
             {
-                if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+                if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.JoystickButton0))
                 {
                     rigidbody.AddForce(new Vector2(0, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
                     inAir = true;
