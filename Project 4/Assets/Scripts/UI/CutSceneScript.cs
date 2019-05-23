@@ -12,23 +12,26 @@ public class CutSceneScript : MonoBehaviour
     //Plays a video at start
     void Start()
     {
+        // Gets the renderer component from the object this script is on and plays the video.
         ((MovieTexture)GetComponent<Renderer>().material.mainTexture).Play();
+        // disables skip text
         skipText.SetActive(false);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            timer += 27;
-        }
-
+        // adds time for timer
         timer += 1 * Time.deltaTime;
-        if (timer >= 27.25f)
+        // checks if you pressed P or the time has passed.
+        if (timer >= 27.25f || Input.GetKeyDown(KeyCode.P))
         {
+            // changes scene to game.
             SceneManager.LoadScene(1);
-        }else if (timer >= 3)
+        }
+        // check if 3 sec of the intro have passed.
+        else if (timer >= 3)
         {
+            // activates skip text
             skipText.SetActive(true);
         }
     }
