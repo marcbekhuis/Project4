@@ -9,6 +9,7 @@ public class SkyBoxMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // moves the skybox x position to follow the player.
         this.transform.position = new Vector3(player.transform.position.x, this.transform.position.y, 0);
     }
 }
