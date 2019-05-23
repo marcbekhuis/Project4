@@ -16,6 +16,7 @@ public class AIHealthScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //puts the health to their max
         heartMode = 3;
         playerHealth = 3;
         fullPlayerHealth = 3;
@@ -26,6 +27,7 @@ public class AIHealthScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if AI health goes under is or goes lower than 0 it gets destroyed
         if (actualPlayerHealth <= 0)
         {
             Destroy(this.gameObject);
@@ -34,8 +36,10 @@ public class AIHealthScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //checks if a collider with the tag "Deadly" hits the AI
         if (collision.gameObject.CompareTag("Deadly"))
         {
+            //Removes health from the AI
             actualPlayerHealth--;
             healthLost++;
             heartMode--;
@@ -44,39 +48,6 @@ public class AIHealthScript : MonoBehaviour
                 playerHealth--;
                 healthLost = 0;
                 heartMode = 2;
-            }
-        }
-
-        else if (collision.gameObject.CompareTag("HealthUp"))
-        {
-            if (playerHealth <= 19)
-            {
-                fullActualPlayerHealth += 3;
-                fullPlayerHealth += 1;
-                actualPlayerHealth = fullActualPlayerHealth;
-                playerHealth = fullPlayerHealth;
-                heartMode = 3;
-                healthLost = 0;
-            }else
-            {
-                actualPlayerHealth = fullActualPlayerHealth;
-                playerHealth = fullPlayerHealth;
-                heartMode = 3;
-                healthLost = 0;
-            }
-            collision.gameObject.SetActive(false);
-        }
-
-        else if (collision.gameObject.CompareTag("HealthRestore"))
-        {
-            if (playerHealth != fullPlayerHealth)
-            {
-                playerHealth += 2;
-
-                if (playerHealth > fullPlayerHealth)
-                {
-                    playerHealth = fullPlayerHealth;
-                }
             }
         }
     }

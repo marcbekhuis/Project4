@@ -17,11 +17,13 @@ public class MainMenu : MonoBehaviour
 
     public void StartGamer()
     {
+        //Shifts to the next scene in numerical order
         SceneManager.LoadScene(nextScene);
     }
 
     public void QuitGame()
     {
+        //Ends application
         Application.Quit();
     }
 

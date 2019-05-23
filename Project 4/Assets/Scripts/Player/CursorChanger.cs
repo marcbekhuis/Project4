@@ -16,12 +16,15 @@ public class CursorChanger : MonoBehaviour
 
     private void Start()
     {
+        //Forces the defaultPointer texture on the cursor
         Cursor.SetCursor(defaultPointer, hotSpot, curMode);
     }
     private void Update()
     {
+        //Runs as long as the player's allowAction state is true and gamePaused is not true.
         if (playerActions.allowAction && !playerActions.gamePaused)
         {
+            //Checks conditions and changes the cursor texture when certain booleans are met
             if (!playerActions.axeEquipped && !playerActions.pickaxeEquipped && !playerActions.swordEquipped)
             {
                 Cursor.SetCursor(defaultPointer, hotSpot, curMode);

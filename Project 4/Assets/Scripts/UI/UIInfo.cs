@@ -37,13 +37,14 @@ public class UIInfo : MonoBehaviour
 
     void start()
     {
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+        //Creates a textholder that converts the variables timeMin and timeSec to strings
         timeText.text = "Time survived: " + timeMin.ToString("F0") + ":" + timeSec.ToString("F0");
     }
 
     void Update()
     {
+        //Runs a timer if statement as long as gamepaused is false
+        //After every 60 seconds that pass the variable timeSec will be reset to 0 and timeMin will increment by 1
         if (!playerActions.gamePaused)
         {
             timeSec += Time.deltaTime;
@@ -58,6 +59,7 @@ public class UIInfo : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //A storage that saves text procedural order that consistently destroys the first saved item.
         for (int x = 0; x < MemoryItems.Count; x++)
         {
             if (MemoryItems[x].time <= 0)
@@ -141,7 +143,7 @@ public class UIInfo : MonoBehaviour
         justButton.interactable = interactable;
         justButton.onClick.AddListener(() => playerInvetory.InteractionCrafting(itemIcon));
     }
-
+    
     public void ShowCraftingInfo(Sprite image, string neededItems, string name)
     {
         craftingImage.sprite = image;
