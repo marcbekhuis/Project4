@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    private int nextScene = 1;
+    private int nextScene = 4;
     private int open = 0;
     public GameObject optionsMenu;
 

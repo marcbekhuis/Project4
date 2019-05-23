@@ -61,6 +61,8 @@ public class NaturePediaScript : MonoBehaviour
         }
         else if (pages == 1)
         {
+            //Shows the first page explaining the book itself
+            //and turns on the left page
             leftPage.gameObject.SetActive(true);
             rightPage.gameObject.SetActive(false);
             itemImage.gameObject.SetActive(false);
@@ -69,6 +71,8 @@ public class NaturePediaScript : MonoBehaviour
         }
         else if (pages == 2)
         {
+            //Explains the first block
+            //and turns on the right page
             leftPage.gameObject.SetActive(false);
             rightPage.gameObject.SetActive(true);
             itemImage.gameObject.SetActive(true);
@@ -78,6 +82,7 @@ public class NaturePediaScript : MonoBehaviour
         }
         else if (pages == 3)
         {
+            //turns on the left page
             leftPage.gameObject.SetActive(true);
             rightPage.gameObject.SetActive(false);
             title.text = "Dirt";
@@ -86,6 +91,7 @@ public class NaturePediaScript : MonoBehaviour
         }
         else if (pages == 4)
         {
+            //turns on the right page
             leftPage.gameObject.SetActive(false);
             rightPage.gameObject.SetActive(true);
             title.text = "Stone";
@@ -94,6 +100,7 @@ public class NaturePediaScript : MonoBehaviour
         }
         else if (pages == 5)
         {
+            //turns on the left page
             leftPage.gameObject.SetActive(true);
             rightPage.gameObject.SetActive(false);
             title.text = "Kapok Tree";
@@ -102,6 +109,7 @@ public class NaturePediaScript : MonoBehaviour
         }
         else if (pages == 6)
         {
+            //turns on the right page
             leftPage.gameObject.SetActive(false);
             rightPage.gameObject.SetActive(true);
             title.text = "Cotoneaster";
@@ -110,6 +118,7 @@ public class NaturePediaScript : MonoBehaviour
         }
         else if (pages == 7)
         {
+            //turns on the left page
             leftPage.gameObject.SetActive(true);
             rightPage.gameObject.SetActive(false);
             title.text = "Rafflesia";
@@ -118,6 +127,7 @@ public class NaturePediaScript : MonoBehaviour
         }
         else if (pages == 8)
         {
+            //turns on the right page
             leftPage.gameObject.SetActive(false);
             rightPage.gameObject.SetActive(true);
             title.text = "Asian Elephant";
@@ -126,14 +136,52 @@ public class NaturePediaScript : MonoBehaviour
         }
         else if (pages == 9)
         {
+            //turns on the left page
             leftPage.gameObject.SetActive(true);
             rightPage.gameObject.SetActive(false);
             title.text = "Albatross";
             discription.text = "Albatrosses are highly efficient in the air, using dynamic soaring and slope soaring to cover great distances with little exertion.";
             itemImage.sprite = sprites[7];
         }
+        else if (pages == 10)
+        {
+            //turns on the right page
+            leftPage.gameObject.SetActive(false);
+            rightPage.gameObject.SetActive(true);
+            title.text = "Daisy";
+            discription.text = "A wild flowering plant Bellis perennis of the Asteraceae family, with a yellow head and white petals.";
+            itemImage.sprite = sprites[8];
+        }
+        else if (pages == 11)
+        {
+            //turns on the left page
+            leftPage.gameObject.SetActive(true);
+            rightPage.gameObject.SetActive(false);
+            title.text = "Rose";
+            discription.text = "A rose is a woody perennial flowering plant of the genus Rosa, in the family Rosaceae, or the flower it bears. There are over three hundred species and thousands of cultivars.";
+            itemImage.sprite = sprites[9];
+        }
+        else if (pages == 12)
+        {
+            //turns on the right page
+            leftPage.gameObject.SetActive(false);
+            rightPage.gameObject.SetActive(true);
+            title.text = "Verbena";
+            discription.text = "The Verbena leaves are usually opposite, simple, and in many species hairy, often densely so. The flowers are small, with five petals, and borne in dense spikes.";
+            itemImage.sprite = sprites[10];
+        }
+        else if (pages == 13)
+        {
+            //turns on the left page
+            leftPage.gameObject.SetActive(true);
+            rightPage.gameObject.SetActive(false);
+            title.text = "Amaryllis";
+            discription.text = "Amaryllis is a bulbous plant, with each bulb being 5–10 cm in diameter. It has several strap-shaped, green leaves, 30–50 cm long and 2–3 cm broad, arranged in two rows.";
+            itemImage.sprite = sprites[11];
+        }
         else
         {
+            //Goes a page back if you try to go to a page that doesn't exist
             pages--;
         }
     }

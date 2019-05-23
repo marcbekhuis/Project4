@@ -16,6 +16,7 @@ public class DeathSceneCloudScroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Teleports the clouds back once the x value goes lower than 13
         rb2D.velocity = new Vector3(-speed, 0, 0);
         if (transform.position.x <= -13)
         {

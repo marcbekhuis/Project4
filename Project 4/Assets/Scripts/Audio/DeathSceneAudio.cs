@@ -17,7 +17,9 @@ public class DeathSceneAudio : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Turns off the Overlay
         deathUI.SetActive(false);
+        //Plays the sound of dying
         audioSource.clip = deathNoise;
         audioSource.volume = 0.25f;
     }
@@ -25,6 +27,7 @@ public class DeathSceneAudio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Slowly turn on music after the death sound has played
         if (playedOnce == true)
         {
             if (audioSource.volume < endVolume)
@@ -33,6 +36,7 @@ public class DeathSceneAudio : MonoBehaviour
             }
         }
 
+        //Checks if the death sound has played once
         timer += 1 * Time.deltaTime;
         if (timer >= 5.6f)
         {
@@ -40,6 +44,7 @@ public class DeathSceneAudio : MonoBehaviour
             {
                 if (timer >= 8)
                 {
+                    //Changes the song thats playing to the death song
                     playedOnce = true;
 
                     endVolume = audioSource.volume;
@@ -50,6 +55,7 @@ public class DeathSceneAudio : MonoBehaviour
                 }
                 else
                 {
+                    //Stops the audio from playing
                     audioSource.Stop();
                     deathUI.SetActive(true);
                 }
