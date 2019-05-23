@@ -16,17 +16,19 @@ public class PlayerMovement : MonoBehaviour
     public bool fly = false;
     private void Start()
     {
-
         rigidbody = GetComponent<Rigidbody2D>();
         playerActions = GetComponent<PlayerActions>();
     }
 
     private void FixedUpdate()
     {
+        //Sets the horizontal axis to a negative value when A is pressed
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("Horizontal") < 0)
         {
+            //Sets the horizontal axiss to a positive value when D is pressed
             if (!Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0)
             {
+                //Changes the velocity on the rigidbody depending on what input is being used with preset variables.
                 if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.JoystickButton1))
                 {
                     rigidbody.velocity = new Vector2(-1 * Time.fixedDeltaTime * crouchSpeed, rigidbody.velocity.y);
@@ -42,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
                 playerImage.transform.localScale = new Vector3(1, 1, 1);
             }
         }
+        //Same code as above made compatible for an Xbox One controller.
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0)
         {
             if (!Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("Horizontal") < 0)
@@ -65,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
         }
+        //Checks if the player is not in the air and exerts force on the Y axis when the appropriate key is pressed
         if (!fly)
         {
             if (!inAir)
@@ -92,8 +96,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        
         if (rigidbody.velocity.x != 0)
         {
+            //As long as the velocity doesn't equal 0 the bool walkingAnim will be set to true and turns it off when it's not
             animator.SetBool("walkingAnim", true);
         }
         else
@@ -101,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("walkingAnim", false);
         }
         if (inAir == true)
+            //Checks if the inAir bool is true and sets the animator jumpingAnim to true.
         {
             animator.SetBool("jumpingAnim", true);
         }

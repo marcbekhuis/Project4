@@ -34,17 +34,22 @@ public class PlayerHealthScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Checks if actualPlayerHealth is less or equal than 0
         if (actualPlayerHealth <= 0)
         {
+            //Stores the time in saveData
             saveData.SaveDataTime();
+            //Calls SceneManager and loads scene 2
             SceneManager.LoadScene(2);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Checks for the tag deadly when colliding with another game object
         if (collision.gameObject.CompareTag("Deadly"))
         {
+            //Changes several variables on collision with an object tagged as "Deadly"
             actualPlayerHealth--;
             healthLost++;
             heartMode--;
@@ -54,13 +59,15 @@ public class PlayerHealthScript : MonoBehaviour
                 healthLost = 0;
                 heartMode = 2;
             }
+            //Calls the changeheart function to change the sprite depending on the current heartMode
             Changeheart();
         }
-
+        //Checks for the tag HealthUp when colliding with another game object
         else if (collision.gameObject.CompareTag("HealthUp"))
         {
             if (playerHealth <= 19)
             {
+                //When the playerHealth meets a certain threshold a heart sprite will be instantiated and sets variables to preset values
                 GameObject justAdded = Instantiate(heartPrefab, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0), healtchContainer.transform);
                 hearts.Add(justAdded.GetComponent<Image>());
                 fullActualPlayerHealth += 3;
@@ -100,7 +107,7 @@ public class PlayerHealthScript : MonoBehaviour
             }
         }
     }
-
+    //A function that changes the heart sprite when conditions are met
     private void Changeheart()
     {
         if (heartMode == 1)
