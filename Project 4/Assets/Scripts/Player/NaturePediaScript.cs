@@ -12,6 +12,8 @@ public class NaturePediaScript : MonoBehaviour
     public Image bookCover;
     public Image leftPage;
     public Image rightPage;
+    public Image itemImage;
+    public Sprite[] sprites;
 
     public Button previousPageButton;
     public Button nextPageButton;
@@ -38,6 +40,7 @@ public class NaturePediaScript : MonoBehaviour
             previousPageButton.gameObject.SetActive(true);
             title.gameObject.SetActive(true);
             discription.gameObject.SetActive(true);
+            itemImage.gameObject.SetActive(true);
         }
         else
         {
@@ -48,6 +51,7 @@ public class NaturePediaScript : MonoBehaviour
             title.gameObject.SetActive(false);
             discription.gameObject.SetActive(false);
             previousPageButton.gameObject.SetActive(false);
+            itemImage.gameObject.SetActive(false);
         }
 
         //shows certain items on certain pages.
@@ -59,6 +63,7 @@ public class NaturePediaScript : MonoBehaviour
         {
             leftPage.gameObject.SetActive(true);
             rightPage.gameObject.SetActive(false);
+            itemImage.gameObject.SetActive(false);
             title.text = "The NaturePedia";
             discription.text = "This is the NaturePedia, here you will find information about blocks you collect.";
         }
@@ -66,8 +71,10 @@ public class NaturePediaScript : MonoBehaviour
         {
             leftPage.gameObject.SetActive(false);
             rightPage.gameObject.SetActive(true);
+            itemImage.gameObject.SetActive(true);
             title.text = "Grass";
             discription.text = "This is grass, one of the most common blocks. Plants and trees can grow on it.";
+            itemImage.sprite = sprites[0];
         }
         else if (pages == 3)
         {
@@ -75,6 +82,7 @@ public class NaturePediaScript : MonoBehaviour
             rightPage.gameObject.SetActive(false);
             title.text = "Dirt";
             discription.text = "This is dirt, it's the block below grass. It does not do much.";
+            itemImage.sprite = sprites[1];
         }
         else if (pages == 4)
         {
@@ -82,6 +90,7 @@ public class NaturePediaScript : MonoBehaviour
             rightPage.gameObject.SetActive(true);
             title.text = "Stone";
             discription.text = "This is stone, one of the first building blocks you get.";
+            itemImage.sprite = sprites[2];
         }
         else if (pages == 5)
         {
@@ -89,6 +98,7 @@ public class NaturePediaScript : MonoBehaviour
             rightPage.gameObject.SetActive(false);
             title.text = "Kapok Tree";
             discription.text = "The kapok tree is a tropicl tree, these trees can grow up to 70 m tall.";
+            itemImage.sprite = sprites[3];
         }
         else if (pages == 6)
         {
@@ -96,6 +106,7 @@ public class NaturePediaScript : MonoBehaviour
             rightPage.gameObject.SetActive(true);
             title.text = "Cotoneaster";
             discription.text = "This flower attract bees and butterflies and the fruits are eaten by birds.";
+            itemImage.sprite = sprites[4];
         }
         else if (pages == 7)
         {
@@ -103,6 +114,7 @@ public class NaturePediaScript : MonoBehaviour
             rightPage.gameObject.SetActive(false);
             title.text = "Rafflesia";
             discription.text = "The Rafflesia has no stems, leaves or roots. The only part of the plant that can be seen outside the host vine is the five-petalled flower.";
+            itemImage.sprite = sprites[5];
         }
         else if (pages == 8)
         {
@@ -110,6 +122,7 @@ public class NaturePediaScript : MonoBehaviour
             rightPage.gameObject.SetActive(true);
             title.text = "Asian Elephant";
             discription.text = "The Asian elephant is the largest living land animal in Asia.";
+            itemImage.sprite = sprites[6];
         }
         else if (pages == 9)
         {
@@ -117,6 +130,7 @@ public class NaturePediaScript : MonoBehaviour
             rightPage.gameObject.SetActive(false);
             title.text = "Albatross";
             discription.text = "Albatrosses are highly efficient in the air, using dynamic soaring and slope soaring to cover great distances with little exertion.";
+            itemImage.sprite = sprites[7];
         }
         else
         {

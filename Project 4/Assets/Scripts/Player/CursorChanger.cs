@@ -20,17 +20,28 @@ public class CursorChanger : MonoBehaviour
     }
     private void Update()
     {
-        if (playerActions.axeEquipped)
+        if (playerActions.allowAction && !playerActions.gamePaused)
         {
-            Cursor.SetCursor(axePointer, hotSpot, curMode);
+            if (!playerActions.axeEquipped && !playerActions.pickaxeEquipped && !playerActions.swordEquipped)
+            {
+                Cursor.SetCursor(defaultPointer, hotSpot, curMode);
+            }
+            else if (playerActions.axeEquipped)
+            {
+                Cursor.SetCursor(axePointer, hotSpot, curMode);
+            }
+            else if (playerActions.pickaxeEquipped)
+            {
+                Cursor.SetCursor(pickaxePointer, hotSpot, curMode);
+            }
+            else if (playerActions.swordEquipped)
+            {
+                Cursor.SetCursor(swordPointer, hotSpot, curMode);
+            }
         }
-        if(playerActions.pickaxeEquipped)
+        else
         {
-            Cursor.SetCursor(pickaxePointer, hotSpot, curMode);
-        }
-        if (playerActions.swordEquipped)
-        {
-            Cursor.SetCursor(swordPointer, hotSpot, curMode);
+            Cursor.SetCursor(null, hotSpot, curMode);
         }
     
     }

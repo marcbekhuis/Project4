@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
     public bool fly = false;
     private void Start()
     {
-        Cursor.visible = false;
 
         rigidbody = GetComponent<Rigidbody2D>();
         playerActions = GetComponent<PlayerActions>();
