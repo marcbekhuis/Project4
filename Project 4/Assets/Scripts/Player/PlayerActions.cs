@@ -12,6 +12,8 @@ public class PlayerActions : MonoBehaviour
     public GameObject player;
     public GameObject cursor;
     public GameObject swordBox;
+    public AudioSource playerSound;
+    public AudioClip breakBlock;
     PlayerInvetory playerInvetory;
     GameObject overlappingTree;
 
@@ -156,6 +158,7 @@ public class PlayerActions : MonoBehaviour
                         {
                             Destroy(overlappingTree);
                         }
+                        playBreakSound();
                     }
                 }
 
@@ -222,36 +225,42 @@ public class PlayerActions : MonoBehaviour
                                     playerInvetory.Additem("Grass", 1);
                                     // removes the tile
                                     tilemap.SetTile(cellpos, null);
+                                    playBreakSound();
                                     break;
                                 case "Grass02":
                                     // adds a item to your inventory
                                     playerInvetory.Additem("Grass", 1);
                                     // removes the tile
                                     tilemap.SetTile(cellpos, null);
+                                    playBreakSound();
                                     break;
                                 case "Dirt01":
                                     // adds a item to your inventory
                                     playerInvetory.Additem("Dirt", 1);
                                     // removes the tile
                                     tilemap.SetTile(cellpos, null);
+                                    playBreakSound();
                                     break;
                                 case "Dirt02":
                                     // adds a item to your inventory
                                     playerInvetory.Additem("Dirt", 1);
                                     // removes the tile
                                     tilemap.SetTile(cellpos, null);
+                                    playBreakSound();
                                     break;
                                 case "Stone01":
                                     // adds a item to your inventory
                                     playerInvetory.Additem("Stone", 1);
                                     // removes the tile
                                     tilemap.SetTile(cellpos, null);
+                                    playBreakSound();
                                     break;
                                 case "DirtStone01":
                                     // adds a item to your inventory
                                     playerInvetory.Additem("Stone", 1);
                                     // removes the tile
                                     tilemap.SetTile(cellpos, null);
+                                    playBreakSound();
                                     break;
                                 case "Bedrock01":
                                     break;
@@ -281,6 +290,13 @@ public class PlayerActions : MonoBehaviour
                 }
             }
         }
+    }
+
+    //plays the sound of a block breaking
+    void playBreakSound()
+    {
+        playerSound.clip = breakBlock;
+        playerSound.Play();
     }
 
     // collision enter check
