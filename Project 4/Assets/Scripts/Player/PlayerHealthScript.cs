@@ -13,6 +13,8 @@ public class PlayerHealthScript : MonoBehaviour
     public Sprite emptyHeart;
     public GameObject healtchContainer;
     public SaveData saveData;
+    public AudioSource playerSound;
+    public AudioClip playerHit;
 
     private int playerHealth;
     private int fullPlayerHealth;
@@ -59,6 +61,9 @@ public class PlayerHealthScript : MonoBehaviour
                 healthLost = 0;
                 heartMode = 2;
             }
+            //Plays a sound when player gets hit
+            playerSound.clip = playerHit;
+            playerSound.Play();
             //Calls the changeheart function to change the sprite depending on the current heartMode
             Changeheart();
         }
